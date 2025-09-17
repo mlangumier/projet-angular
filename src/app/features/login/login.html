@@ -1,1 +1,57 @@
-<p>login works!</p>
+<section class="title">
+  <h1>Se connecter</h1>
+</section>
+
+<section class="block">
+  <form class="form" [formGroup]="form" (ngSubmit)="submitForm()">
+    <div class="content">
+      <mat-form-field>
+        @let email = form.controls.email;
+        <mat-label>Email</mat-label>
+        <input matInput formControlName="email" />
+        @if (email.invalid && (email.dirty || email.touched)) {
+          <div class="field-errors">
+            @if (email.hasError('email')) {
+              <mat-error>Veuillez entrer une adresse email valide.</mat-error>
+            }
+            @if (email.hasError('required')) {
+              <mat-error>L'adresse email obligatoire.</mat-error>
+            }
+          </div>
+        }
+      </mat-form-field>
+
+      <mat-form-field>
+        @let password = form.controls.password;
+        <mat-label>Mot de passe</mat-label>
+        <input matInput type="password" formControlName="password" min="4" />
+        @if (password.invalid && (password.dirty || password.touched)) {
+          <div class="field-errors">
+            @if (password.hasError('required')) {
+              <mat-error>Le mot de passe est obligatoire.</mat-error>
+            }
+            @if (password.hasError('min')) {
+              <mat-error>Le mot de passe doit contenir au moins 4 caractères.</mat-error>
+            }
+          </div>
+        }
+      </mat-form-field>
+
+      @if (form.invalid && (form.dirty || form.touched)) {
+        <div class="form-errors">
+          @if (form.hasError('wrongCredentials')) {
+            <mat-error>Identifiants incorrects</mat-error>
+          }
+        </div>
+      }
+    </div>
+
+    <div class="ctas">
+      <button matButton="filled" type="submit">Se connecter</button>
+    </div>
+  </form>
+
+  <div class="links">
+    <p>Pas encore inscrit ? <a routerLink="/register" class="link-simple">Créer un compte</a></p>
+  </div>
+</section>

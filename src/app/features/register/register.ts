@@ -32,11 +32,11 @@ export class Register implements OnInit, OnDestroy {
   private readonly _snackBar = inject(MatSnackBar);
 
   protected readonly form = this.formBuilder.group({
-    displayName: [ '', [ Validators.required, Validators.min(2) ] ],
+    displayName: [ '', [ Validators.required, Validators.minLength(2) ] ],
     email: [ '', [ Validators.required, Validators.email ] ],
-    password: [ '', [ Validators.required, Validators.min(4) ] ],
+    password: [ '', [ Validators.required, Validators.minLength(4) ] ],
     passwordConfirmation: [ '', Validators.required ],
-  }, { validators: passwordMatchValidator })
+  }, { validators: passwordMatchValidator, updateOn: "blur" })
 
   ngOnInit() {
     this.subscription = this.form.controls.email.valueChanges.pipe(
@@ -84,11 +84,10 @@ export class Register implements OnInit, OnDestroy {
         setTimeout(() => {
           this.router.navigate([ '/' ])
         }, 5000)
-
       },
       error: (error) => {
         this._snackBar.open("Une erreur est survenue. Veuillez réessayer.");
-        console.error(`Error: ${ JSON.stringify(error) }`);
+        console.error(error);
       }
     })
   }

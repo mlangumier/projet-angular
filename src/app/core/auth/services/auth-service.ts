@@ -1,7 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { afterNextRender, computed, inject, Injectable, signal } from '@angular/core';
 import { Observable, tap } from "rxjs";
-import { IRegister, IUser } from "../user.model";
+import { ICredentials, IRegister, IUser } from "../user.model";
 
 @Injectable({
   providedIn: 'root'
@@ -28,13 +28,24 @@ export class AuthService {
   }
 
   register(payload: IRegister): Observable<IUser> {
-    return this.http.post<IUser>(`/user`, payload).pipe(tap(user => {
-      localStorage.setItem("user", JSON.stringify(user));
-      this._currentUser.set(user);
+    return this.http.post<IUser>(`/user`, payload).pipe(tap((response: IUser) => {
+      localStorage.setItem("user", JSON.stringify(response));
+      this._currentUser.set(response);
     }));
   }
 
-  // login
+  login(credentials: ICredentials): Observable<IUser> {
+    const btoaCredentials = `${ credentials.email }:${ credentials.password }`
+    return this.http.get<IUser>(`/account`, {
+      headers: {
+        "Authorization": `Basic ${ btoa(btoaCredentials) }`
+      },
+      withCredentials: true
+    }).pipe(tap((response: IUser) => {
+      localStorage.setItem("user", JSON.stringify(response));
+      this._currentUser.set(response);
+    }))
+  }
 
   // logout
 }

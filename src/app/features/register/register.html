@@ -60,8 +60,7 @@
         @let passwordConfirmation = form.controls.passwordConfirmation;
         <mat-label>Confirmez le mot de passe</mat-label>
         <input matInput type="password" formControlName="passwordConfirmation" min="4" />
-        @if (passwordConfirmation.invalid && (passwordConfirmation.dirty
-            || passwordConfirmation.touched)) {
+        @if (passwordConfirmation.invalid && (passwordConfirmation.dirty || passwordConfirmation.touched)) {
           <div class="field-errors">
             @if (passwordConfirmation.hasError('required')) {
               <mat-error>Veuillez confirmer votre mot de passe.</mat-error>
@@ -72,8 +71,8 @@
 
       @if (form.invalid && (form.dirty || form.touched)) {
         <div class="form-errors">
-          @if (form.hasError('passwordMismatch')) {
-            <mat-error>Les mot de passe ne correspondent pas.</mat-error>
+          @if (form.hasError('passwordMismatch') && (passwordConfirmation.dirty || passwordConfirmation.touched)) {
+            <mat-error>Les mots de passe ne sont pas identiques.</mat-error>
           }
         </div>
       }

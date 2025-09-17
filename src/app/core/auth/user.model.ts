@@ -7,8 +7,11 @@ export interface IUser {
   role: TRole;
 }
 
-export interface IRegister {
-  displayName: string;
+export interface ICredentials {
   email: string;
   password: string;
+}
+
+export interface IRegister extends ICredentials {
+  displayName: string;
 }
