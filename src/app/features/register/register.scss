@@ -1,0 +1,34 @@
+.title {
+  margin: 4rem 0;
+
+  h1 {
+    text-align: center;
+  }
+}
+
+.block {
+  max-width: 480px;
+  margin: 0 auto;
+
+  .form {
+
+    .content {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .ctas {
+      margin-top: 0.5rem;
+      text-align: center;
+    }
+  }
+
+  .links {
+    text-align: end;
+    margin-top: 4rem;
+
+    p {
+      margin: 0.5rem 0;
+    }
+  }
+}

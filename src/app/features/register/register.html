@@ -1,1 +1,90 @@
-<p>register works!</p>
+<section class="title">
+  <h1>Créer un compte</h1>
+</section>
+
+<section class="block">
+  <form class="form" [formGroup]="form" (ngSubmit)="submitForm()">
+    <div class="content">
+      <mat-form-field>
+        @let displayName = form.controls.displayName;
+        <mat-label>Nom d'utilisateur</mat-label>
+        <input matInput formControlName="displayName" min="2" />
+        @if (displayName.invalid && (displayName.dirty || displayName.touched)) {
+          <div class="field-errors">
+            @if (displayName.hasError('required')) {
+              <mat-error>Le nom d'utilisateur est obligatoire.</mat-error>
+            }
+            @if (displayName.hasError('min')) {
+              <mat-error>Le nom d'utilisateur doit contenir au moins 2 caractères.</mat-error>
+            }
+          </div>
+        }
+      </mat-form-field>
+
+      <mat-form-field>
+        @let email = form.controls.email;
+        <mat-label>Adresse email</mat-label>
+        <input matInput placeholder="ex: sam@aol.com" formControlName="email" />
+        @if (email.invalid && (email.dirty || email.touched)) {
+          <div class="field-errors">
+            @if (email.hasError('email')) {
+              <mat-error>Veuillez entrer une adresse email valide.</mat-error>
+            }
+            @if (email.hasError('required')) {
+              <mat-error>L'adresse email obligatoire.</mat-error>
+            }
+            @if (email.hasError('emailAlreadyInUse')) {
+              <mat-error>Adresse email déjà utilisée.</mat-error>
+            }
+          </div>
+        }
+      </mat-form-field>
+
+      <mat-form-field>
+        @let password = form.controls.password;
+        <mat-label>Mot de passe</mat-label>
+        <input matInput type="password" formControlName="password" min="4" />
+        @if (password.invalid && (password.dirty || password.touched)) {
+          <div class="field-errors">
+            @if (password.hasError('required')) {
+              <mat-error>Le mot de passe est obligatoire.</mat-error>
+            }
+            @if (password.hasError('min')) {
+              <mat-error>Le mot de passe doit contenir au moins 4 caractères.</mat-error>
+            }
+          </div>
+        }
+      </mat-form-field>
+
+      <mat-form-field>
+        @let passwordConfirmation = form.controls.passwordConfirmation;
+        <mat-label>Confirmez le mot de passe</mat-label>
+        <input matInput type="password" formControlName="passwordConfirmation" min="4" />
+        @if (passwordConfirmation.invalid && (passwordConfirmation.dirty
+            || passwordConfirmation.touched)) {
+          <div class="field-errors">
+            @if (passwordConfirmation.hasError('required')) {
+              <mat-error>Veuillez confirmer votre mot de passe.</mat-error>
+            }
+          </div>
+        }
+      </mat-form-field>
+
+      @if (form.invalid && (form.dirty || form.touched)) {
+        <div class="form-errors">
+          @if (form.hasError('passwordMismatch')) {
+            <mat-error>Les mot de passe ne correspondent pas.</mat-error>
+          }
+        </div>
+      }
+    </div>
+
+    <div class="ctas">
+      <button matButton="filled" type="submit">S'inscrire</button>
+    </div>
+  </form>
+
+  <div class="links">
+    <p>Déjà inscrit ? <a routerLink="/login" class="link-simple">Se connecter</a></p>
+  </div>
+</section>

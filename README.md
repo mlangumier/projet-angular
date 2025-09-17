@@ -6,9 +6,9 @@ Projet Spring Boot pour l'évaluation Angular
 
 Créer une application Angular et créer une interface graphique responsive pour ce backend.
 
-### Fonctionnalités attendues :
+### Fonctionnalités attendues
 
-- [ ] Formulaire d'inscription
+- [x] Formulaire d'inscription
 - [ ] Formulaire d'authentification
 - [ ] Afficher les dernières images paginées
 - [ ] Afficher les images d'un user spécifique
