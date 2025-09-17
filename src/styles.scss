@@ -8,13 +8,15 @@
 html {
   @include mat.theme((
       color: (
-          primary: mat.$cyan-palette,
+          primary: mat.$azure-palette,
           tertiary: mat.$orange-palette,
       ),
       typography: Roboto,
       density: 0,
   ));
 }
+
+//TODO: set either theme or main variables
 
 body {
   // Default the application to a light color theme. This can be changed to
@@ -42,4 +44,24 @@ html, body {
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+app-root {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+
+  main {
+    flex-grow: 1;
+  }
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+
 }

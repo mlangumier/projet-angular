@@ -1,0 +1,15 @@
+<header>
+  <div class="brand">
+    <a routerLink="/" class="main">Angular ORM</a>
+  </div>
+
+  <div class="cta">
+    <!-- If user.isLoggedIn() -->
+    @if (true) {
+      <button matButton="filled" (click)="logout()">Se déconnecter</button>
+    } @else {
+      <a matButton="filled" routerLink="/login">Se connecter</a>
+    }
+  </div>
+
+</header>
