@@ -1,4 +1,3 @@
-import { MatSnackBar } from "@angular/material/snack-bar";
 import { debounceTime, distinctUntilChanged, Subscription } from 'rxjs';
 import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -6,6 +5,7 @@ import { MatButton } from '@angular/material/button';
 import { MatError, MatFormField, MatLabel } from '@angular/material/form-field';
 import { MatInput } from '@angular/material/input';
 import { Router, RouterLink } from '@angular/router';
+import { SnackbarUtilService } from "../../../../shared/utils/snackbar-util.service";
 import { AuthService } from '../../services/auth-service';
 import { IRegister } from '../../user.model';
 import { passwordMatchValidator } from '../../../../shared/directives/password-match.directive';
@@ -29,7 +29,7 @@ export class Register implements OnInit, OnDestroy {
   private readonly formBuilder = inject(FormBuilder);
   private readonly router = inject(Router);
   private subscription!: Subscription;
-  private readonly _snackBar = inject(MatSnackBar);
+  private readonly snackBar = inject(SnackbarUtilService);
 
   protected readonly form = this.formBuilder.group({
     displayName: [ '', [ Validators.required, Validators.minLength(2) ] ],
@@ -68,7 +68,7 @@ export class Register implements OnInit, OnDestroy {
 
   submitForm() {
     if (!this.form.valid) {
-      this._snackBar.open("Veuillez remplir tous les champs requis.", 'Ok');
+      this.snackBar.open("Veuillez remplir tous les champs requis.");
       return;
     }
 
@@ -80,13 +80,13 @@ export class Register implements OnInit, OnDestroy {
 
     this.authService.register(user).subscribe({
       next: (response) => {
-        this._snackBar.open("Inscription réussie ! Vous êtes désormais connecté et allez être redirigé vers le contenu du site.", '', { duration: 5000 })
+        this.snackBar.open("Inscription réussie ! Vous êtes désormais connecté et allez être redirigé vers le contenu du site.")
         setTimeout(() => {
           this.router.navigate([ '/' ])
         }, 5000)
       },
       error: (error) => {
-        this._snackBar.open("Une erreur est survenue. Veuillez réessayer.");
+        this.snackBar.open("Une erreur est survenue. Veuillez réessayer.");
         console.error(error);
       }
     })
