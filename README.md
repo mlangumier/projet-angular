@@ -10,7 +10,7 @@ Créer une application Angular et créer une interface graphique responsive pour
 
 - [x] Formulaire d'inscription
 - [x] Formulaire d'authentification
-- [ ] Afficher les dernières images paginées
+- [x] Afficher les dernières images paginées
 - [ ] Afficher les images d'un user spécifique
 - [ ] Afficher une image spécifique et ses commentaires
 - [ ] Poster une image

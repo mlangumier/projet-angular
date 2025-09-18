@@ -37,11 +37,13 @@ app-root {
 
   main {
     flex-grow: 1;
-    padding: 1rem;
+    padding: 0 1rem;
   }
 }
 
 ul {
+  margin: 0;
+  padding: 0;
   list-style: none;
 }
 
@@ -51,6 +53,10 @@ a {
 }
 
 //--- Generic components
+
+.page-title {
+  padding: 2rem 0;
+}
 
 .link-simple {
   color: var(--mat-sys-primary);
