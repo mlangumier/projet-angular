@@ -1,6 +1,6 @@
 # Projet Évaluation Angular
 
-Projet Spring Boot pour l'évaluation Angular
+Créer une application frontend qui correspond à un projet backend Spring Boot (REST API).  
 
 ## Objectifs
 

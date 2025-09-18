@@ -1,10 +1,16 @@
 import { Routes } from '@angular/router';
 import { Login } from "./core/auth/pages/login/login";
 import { Register } from "./core/auth/pages/register/register";
+import { Home } from "./features/picture/pages/home/home";
 
 export const routes: Routes = [
-  { path: '', loadComponent: () => import('./features/homepage/homepage').then(m => m.Homepage) },
-  { path: 'login', component: Login },
-  { path: 'register', component: Register },
+  { path: '', component: Home, title: "Accueil | Angular ORM" },
+  {
+    path: 'picture/:id',
+    loadComponent: () => import('./features/picture/pages/picture/picture').then(m => m.Picture),
+    title: `Image | Angular ORM`
+  },
+  { path: 'login', component: Login, title: "Connexion | Angular ORM" },
+  { path: 'register', component: Register, title: "Inscription | Angular ORM" },
   { path: '**', redirectTo: '', pathMatch: 'full' },
 ];
