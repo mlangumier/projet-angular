@@ -5,8 +5,8 @@ import { MatError, MatFormField } from "@angular/material/form-field";
 import { MatInput, MatLabel } from "@angular/material/input";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { Router, RouterLink } from "@angular/router";
-import { AuthService } from "../../core/auth/services/auth-service";
-import { ICredentials, IUser } from "../../core/auth/user.model";
+import { AuthService } from "../../services/auth-service";
+import { ICredentials, IUser } from "../../user.model";
 
 @Component({
   selector: 'app-login',

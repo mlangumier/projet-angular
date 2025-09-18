@@ -6,9 +6,9 @@ import { MatButton } from '@angular/material/button';
 import { MatError, MatFormField, MatLabel } from '@angular/material/form-field';
 import { MatInput } from '@angular/material/input';
 import { Router, RouterLink } from '@angular/router';
-import { AuthService } from '../../core/auth/services/auth-service';
-import { IRegister } from '../../core/auth/user.model';
-import { passwordMatchValidator } from '../../shared/directives/password-match.directive';
+import { AuthService } from '../../services/auth-service';
+import { IRegister } from '../../user.model';
+import { passwordMatchValidator } from '../../../../shared/directives/password-match.directive';
 
 @Component({
   selector: 'app-register',

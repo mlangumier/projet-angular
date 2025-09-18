@@ -10,7 +10,7 @@ export class AuthService {
   private readonly http = inject(HttpClient);
   private readonly _currentUser = signal<IUser | null>(null);
   currentUser = this._currentUser.asReadonly();
-  isLoggedIn = computed(() => this.currentUser !== null);
+  isAuthenticated = computed(() => !!this.currentUser());
 
   constructor() {
     afterNextRender({
@@ -28,24 +28,30 @@ export class AuthService {
   }
 
   register(payload: IRegister): Observable<IUser> {
-    return this.http.post<IUser>(`/user`, payload).pipe(tap((response: IUser) => {
-      localStorage.setItem("user", JSON.stringify(response));
-      this._currentUser.set(response);
-    }));
+    return this.http.post<IUser>(`/user`, payload).pipe(tap((response: IUser) => this.setUserAuth(response)));
   }
 
   login(credentials: ICredentials): Observable<IUser> {
     const btoaCredentials = `${ credentials.email }:${ credentials.password }`
+
     return this.http.get<IUser>(`/account`, {
       headers: {
-        "Authorization": `Basic ${ btoa(btoaCredentials) }`
+        "Authorization": `Basic ${ btoa(btoaCredentials) }`,
       },
       withCredentials: true
-    }).pipe(tap((response: IUser) => {
-      localStorage.setItem("user", JSON.stringify(response));
-      this._currentUser.set(response);
-    }))
+    }).pipe(tap((response: IUser) => this.setUserAuth(response)))
   }
 
-  // logout
+  logout() {
+    return this.http.get<any>(`/logout`).pipe(tap((response) => {
+      this._currentUser.set(null);
+      localStorage.removeItem("user");
+    }));
+  }
+
+  // Helper method that sets the authenticated user in the app's state & local storage
+  private setUserAuth(user: IUser): void {
+    localStorage.setItem("user", JSON.stringify(user));
+    this._currentUser.set(user);
+  }
 }

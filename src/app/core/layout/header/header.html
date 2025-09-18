@@ -1,15 +1,34 @@
-<header>
+<mat-toolbar>
   <div class="brand">
-    <a routerLink="/" class="main">Angular ORM</a>
+    <a routerLink="/" class="main" aria-label="vers la page d'accueil">
+      <mat-icon>home</mat-icon>
+      <span>Angular ORM</span>
+    </a>
   </div>
 
   <div class="cta">
-    <!-- If user.isLoggedIn() -->
-    @if (true) {
-      <button matButton="filled" (click)="logout()">Se déconnecter</button>
+    @if (isAuthenticated() && user()) {
+      <button matButton
+          [matMenuTriggerFor]="menu"
+          aria-label="ouvre le menu utilisateur"
+      >{{ user()?.displayName }}
+      </button>
+      <mat-menu #menu="matMenu" class="menu-user">
+        <button mat-menu-item disabled aria-label="vers le profile">
+          <mat-icon>account_circle</mat-icon>
+          <span>Profile</span>
+        </button>
+        <button mat-menu-item
+            (click)="logout()"
+            aria-label="se déconnecter"
+        >
+          <mat-icon>logout</mat-icon>
+          <span>Déconnexion</span>
+        </button>
+      </mat-menu>
     } @else {
-      <a matButton="filled" routerLink="/login">Se connecter</a>
+      <a matButton="filled" routerLink="/login" aria-label="se connecter">Connexion</a>
     }
   </div>
 
-</header>
+</mat-toolbar>
