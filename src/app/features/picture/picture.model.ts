@@ -20,7 +20,7 @@ export interface IPaginatedPictures {
   empty: boolean;
   first: boolean;
   last: boolean;
-  number: number;
-  size: number;
+  pageNumber: number;
+  pageSize: number;
   content: IPicture[];
 }

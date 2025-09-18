@@ -7,13 +7,22 @@
 
     <div class="filters"></div>
 
-    @if (!paginatedPictures.value().empty) {
-      <app-picture-list [pictureList]="paginatedPictures.value().content"></app-picture-list>
-    } @else {
+    @if (paginatedPictures.value().empty) {
       <p>Aucune image ne correspond à la recherche.</p>
+    } @else {
+      <app-picture-list [pictureList]="paginatedPictures.value().content"></app-picture-list>
     }
 
-    <div class="pagination"></div>
+    <mat-paginator
+        (page)="handlePaginationEvent($event)"
+        [length]="paginatedPictures.value()?.totalElements"
+        [pageIndex]="paginatedPictures.value()?.pageNumber"
+        [pageSize]="paginatedPictures.value()?.pageSize"
+        [pageSizeOptions]="[5, 10, 20, 50]"
+        [showFirstLastButtons]="true"
+        [disabled]="paginatedPictures.value().empty"
+        aria-label="Sélectionner une page"
+    ></mat-paginator>
   } @else if (paginatedPictures.error()) {
     <div class="error">
       <p>Impossible de récupérer les images. Essayez à nouveau.</p>

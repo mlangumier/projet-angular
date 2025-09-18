@@ -1,16 +1,23 @@
 import { httpResource } from "@angular/common/http";
-import { Injectable } from '@angular/core';
+import { Injectable, Signal } from '@angular/core';
 import { IPaginatedPictures, IPicture } from "./picture.model";
+
+export interface ISearchParams {
+  search?: string;
+  pageNumber?: number;
+  pageSize?: number;
+}
 
 @Injectable({
   providedIn: 'root'
 })
 export class PictureService {
 
-  getAllPictures() {
+  getAllPictures(paramSignal: Signal<ISearchParams>) {
     return httpResource<IPaginatedPictures>(() => ({
       url: "/picture",
-      method: "GET"
+      method: "GET",
+      params: { ...paramSignal() }
     }), { parse: (value: any) => this.adaptPaginatedResults(value) })
   }
 
@@ -18,9 +25,9 @@ export class PictureService {
     return {
       totalElements: res.totalElements,
       totalPages: res.totalPages,
-      size: res.page,
+      pageSize: res.size,
       content: res.content.map((picture: any) => this.adaptPictureResponse(picture)),
-      number: res.number,
+      pageNumber: res.number,
       numberOfElements: res.numberOfElements,
       first: res.first,
       last: res.last,
