@@ -1,1 +1,26 @@
-<p>home works!</p>
+<section id="title" class="title">
+  <h1>Dernières images</h1>
+</section>
+
+<section class="pictures">
+  @if (paginatedPictures.hasValue()) {
+
+    <div class="filters"></div>
+
+    @if (!paginatedPictures.value().empty) {
+      <app-picture-list [pictureList]="paginatedPictures.value().content"></app-picture-list>
+    } @else {
+      <p>Aucune image ne correspond à la recherche.</p>
+    }
+
+    <div class="pagination"></div>
+  } @else if (paginatedPictures.error()) {
+    <div class="error">
+      <p>Impossible de récupérer les images. Essayez à nouveau.</p>
+    </div>
+  } @else if (paginatedPictures.isLoading()) {
+    <div class="loader">
+      <mat-spinner></mat-spinner>
+    </div>
+  }
+</section>

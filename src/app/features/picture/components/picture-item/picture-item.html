@@ -1,0 +1,15 @@
+<mat-card class="card">
+  <mat-card-header>
+    <mat-card-title class="title">{{ picture().title }}</mat-card-title>
+  </mat-card-header>
+  <img mat-card-image src="{{ picture().thumbnailLink }}" alt="{{ picture().title }}">
+  <mat-card-content class="content">
+    <!-- Create ellipsis pipe to limit image description size in card -->
+    <p class="description">{{ picture().description }}</p>
+    <p class="date">Postée le {{ picture().createdAt | date}}</p>
+  </mat-card-content>
+  <mat-card-actions>
+    <button matButton>AIMER</button>
+    <button matButton>EN SAVOIR PLUS</button>
+  </mat-card-actions>
+</mat-card>
