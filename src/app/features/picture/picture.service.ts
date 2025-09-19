@@ -18,7 +18,14 @@ export class PictureService {
       url: "/picture",
       method: "GET",
       params: { ...paramSignal() }
-    }), { parse: (value: any) => this.adaptPaginatedResults(value) })
+    }), { parse: (response: any) => this.adaptPaginatedResults(response) })
+  }
+
+  getPicture(id: Signal<string>) {
+    return httpResource<IPicture>(() => ({
+      url: `/picture/${ id() }`,
+      method: "GET"
+    }), { parse: (response: any) => this.adaptPictureResponse(response) })
   }
 
   private adaptPaginatedResults(res: any): IPaginatedPictures {
@@ -36,6 +43,7 @@ export class PictureService {
   }
 
   private adaptPictureResponse(res: any): IPicture {
+    console.log(res);
     return {
       id: res.id,
       image: res.image,

@@ -14,7 +14,6 @@ html {
   ));
 
   //--- Overrides Angular Material's components styles
-
 }
 
 body {
@@ -37,7 +36,7 @@ app-root {
 
   main {
     flex-grow: 1;
-    padding: 0 1rem;
+    padding: 2rem 1rem;
   }
 }
 
@@ -54,10 +53,6 @@ a {
 
 //--- Generic components
 
-.page-title {
-  padding: 2rem 0;
-}
-
 .link-simple {
   color: var(--mat-sys-primary);
 
@@ -65,4 +60,9 @@ a {
     color: var(--mat-sys-on-primary-fixed-variant);
     text-decoration: underline;
   }
+}
+
+.author-link {
+  color: var(--mat-sys-tertiary);
+  font-weight: 500;
 }

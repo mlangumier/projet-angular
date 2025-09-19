@@ -80,7 +80,7 @@ export class Register implements OnInit, OnDestroy {
 
     this.authService.register(user).subscribe({
       next: (response) => {
-        this.snackBar.open("Inscription réussie ! Vous êtes désormais connecté et allez être redirigé vers le contenu du site.")
+        this.snackBar.open("Inscription réussie ! Vous allez être redirigé vers la page d'accueil.")
         setTimeout(() => {
           this.router.navigate([ '/' ])
         }, 5000)

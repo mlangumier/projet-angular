@@ -6,7 +6,7 @@ import { Home } from "./features/picture/pages/home/home";
 export const routes: Routes = [
   { path: '', component: Home, title: "Accueil | Angular ORM" },
   {
-    path: 'picture/:id',
+    path: 'picture/:pictureId',
     loadComponent: () => import('./features/picture/pages/picture/picture').then(m => m.Picture),
     title: `Image | Angular ORM`
   },

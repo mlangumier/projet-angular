@@ -1,1 +1,42 @@
-<p>picture works!</p>
+@if (pictureResponse.hasValue()) {
+  @let picture = pictureResponse.value();
+
+  <section class="content">
+    <div class="image-block">
+      <img ngSrc="{{ picture.imageLink }}" alt="{{ picture.title }}" fill priority />
+    </div>
+    <div class="details-block">
+      <h1 class="title">{{ picture.title }}</h1>
+      <p class="description">{{ picture.description }}</p>
+      <p class="likes">
+        <!-- Either switch "favorite" / "favorite_outline" or icon completely on click -->
+        <mat-icon fontIcon="favorite_outlined"></mat-icon>
+        @if (picture.likes > 0) {
+          {{ picture.likes }} personnes aiment cette image
+        } @else {
+          Soyez la première personne à aimer cette image!
+        }
+      </p>
+
+      <p>Postée le {{ picture.createdAt | date: 'd MMMM y à H:mm' }} par
+        <span class="author-link">{{ picture.author.displayName }}</span>
+      </p>
+
+    </div>
+  </section>
+
+  <section class="comments">
+    <h2>Commentaires (0)</h2>
+    <!-- Fetch comments & get number of comments -->
+    <p>(À venir)</p>
+    <div class="form">
+      <p>(Write a comment)</p>
+    </div>
+  </section>
+} @else if (pictureResponse.isLoading()) {
+  <mat-spinner></mat-spinner>
+} @else {
+  <section class="section-error">
+    <p class="error">Impossible de récupérer l'image en question. Veuillez réessayer.</p>
+  </section>
+}

@@ -1,15 +1,20 @@
 <mat-card class="card">
-  <mat-card-header>
-    <mat-card-title class="title">{{ picture().title }}</mat-card-title>
-  </mat-card-header>
   <img mat-card-image src="{{ picture().thumbnailLink }}" alt="{{ picture().title }}">
+
   <mat-card-content class="content">
-    <!-- Create ellipsis pipe to limit image description size in card -->
+    <mat-card-title class="title">{{ picture().title }}</mat-card-title>
     <p class="description">{{ picture().description }}</p>
-    <p class="date">Postée le {{ picture().createdAt | date}}</p>
+    <p class="meta">Postée le {{ picture().createdAt | date }} par
+      <span
+          aria-label="voir l'activité de ${{ picture().author.displayName }}"
+          class="author-link"
+      >{{ picture().author.displayName }}</span>
+    </p>
   </mat-card-content>
-  <mat-card-actions>
+
+  <mat-card-actions class="actions">
+    <!-- Replace with heart icon & fill if user has liked before + add "like" event method -->
     <button matButton>AIMER</button>
-    <button matButton>EN SAVOIR PLUS</button>
+    <a matButton [routerLink]="['/picture', picture().id]">EN SAVOIR PLUS</a>
   </mat-card-actions>
 </mat-card>

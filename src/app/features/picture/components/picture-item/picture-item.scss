@@ -1,5 +1,15 @@
 .card {
-  .date {
+  mat-card-title {
+    margin-top: 1rem;
+  }
+
+  .meta {
     font-size: var(--mat-sys-body-small-size);
+  }
+
+  .actions {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
   }
 }

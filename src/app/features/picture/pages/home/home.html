@@ -8,7 +8,7 @@
       <mat-label>Rechercher une image</mat-label>
       <input type="text"
           matInput
-          [value]="search()"
+          [value]="search() || ''"
           (input)="search.set($any($event.target).value)"
       >
     </mat-form-field>
@@ -33,7 +33,7 @@
     ></mat-paginator>
   } @else if (paginatedPictures.error()) {
     <div class="error">
-      <p>Impossible de récupérer les images. Essayez à nouveau.</p>
+      <p>Impossible de récupérer les images. Veuillez recharger la page.</p>
     </div>
   } @else if (paginatedPictures.isLoading()) {
     <div class="loader">

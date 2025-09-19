@@ -5,9 +5,9 @@ import {
   MatCard,
   MatCardActions,
   MatCardContent,
-  MatCardHeader,
   MatCardImage, MatCardTitle
 } from "@angular/material/card";
+import { RouterLink } from "@angular/router";
 import { IPicture } from "../../picture.model";
 
 @Component({
@@ -18,9 +18,9 @@ import { IPicture } from "../../picture.model";
     MatCard,
     MatCardActions,
     MatCardContent,
-    MatCardHeader,
     MatCardImage,
-    MatCardTitle
+    MatCardTitle,
+    RouterLink,
   ],
   templateUrl: './picture-item.html',
   styleUrl: './picture-item.scss'
