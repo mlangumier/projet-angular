@@ -2,28 +2,35 @@
   background: var(--mat-sys-surface-container-lowest);
   border-bottom: 1px solid lightgrey;
   box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.2);
-  padding: 1rem;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  gap: 2rem;
 
-  .brand {
-    .main {
+  .container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+
+    .brand {
+      .main {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 0.5rem;
+
+        color: var(--mat-sys-primary);
+        font-weight: bold;
+        text-transform: uppercase;
+        font-size: 1.25rem;
+
+        &:hover {
+          color: var(--mat-sys-on-primary-fixed-variant);
+        }
+      }
+    }
+
+    .menu-button {
       display: flex;
       flex-direction: row;
-      align-items: center;
-      gap: 0.5rem;
-
-      color: var(--mat-sys-primary);
-      font-weight: bold;
-      text-transform: uppercase;
-      font-size: 1.25rem;
-
-      &:hover {
-        color: var(--mat-sys-on-primary-fixed-variant);
-      }
     }
   }
 }

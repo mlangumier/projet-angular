@@ -1,34 +1,38 @@
 <mat-toolbar>
-  <div class="brand">
-    <a routerLink="/" class="main" aria-label="vers la page d'accueil">
-      <mat-icon>home</mat-icon>
-      <span>Angular ORM</span>
-    </a>
-  </div>
+  <div class="container">
+    <div class="brand">
+      <a routerLink="/" class="main" aria-label="vers la page d'accueil">
+        <mat-icon>home</mat-icon>
+        <span>Angular ORM</span>
+      </a>
+    </div>
 
-  <div class="cta">
-    @if (isAuthenticated() && user()) {
-      <button matButton
-          [matMenuTriggerFor]="menu"
-          aria-label="ouvre le menu utilisateur"
-      >{{ user()?.displayName }}
-      </button>
-      <mat-menu #menu="matMenu" class="menu-user">
-        <button mat-menu-item disabled aria-label="vers le profile">
-          <mat-icon>account_circle</mat-icon>
-          <span>Profile</span>
-        </button>
-        <button mat-menu-item
-            (click)="logout()"
-            aria-label="se déconnecter"
+    <div class="cta">
+      @if (isAuthenticated() && user()) {
+        <button matButton="outlined"
+            [matMenuTriggerFor]="menu"
+            aria-label="ouvre le menu utilisateur"
+            class="menu-button"
         >
-          <mat-icon>logout</mat-icon>
-          <span>Déconnexion</span>
+          <mat-icon>more_vert</mat-icon>
+          {{ user()?.displayName }}
         </button>
-      </mat-menu>
-    } @else {
-      <a matButton="filled" routerLink="/login" aria-label="se connecter">Connexion</a>
-    }
+        <mat-menu #menu="matMenu" class="menu-user">
+          <button mat-menu-item disabled aria-label="vers le profile">
+            <mat-icon>account_circle</mat-icon>
+            <span>Profile</span>
+          </button>
+          <button mat-menu-item
+              (click)="logout()"
+              aria-label="se déconnecter"
+          >
+            <mat-icon>logout</mat-icon>
+            <span>Déconnexion</span>
+          </button>
+        </mat-menu>
+      } @else {
+        <a matButton="filled" routerLink="/login" aria-label="se connecter">Connexion</a>
+      }
+    </div>
   </div>
-
 </mat-toolbar>
