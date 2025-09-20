@@ -1,5 +1,5 @@
 import { Component, input } from '@angular/core';
-import { IPicture } from "../../picture.model";
+import { IPicture } from "../../models/picture.model";
 import { PictureItem } from "../picture-item/picture-item";
 
 @Component({

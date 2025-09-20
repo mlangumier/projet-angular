@@ -5,7 +5,7 @@ import { MatPaginator, PageEvent } from "@angular/material/paginator";
 import { MatProgressSpinner } from '@angular/material/progress-spinner';
 import { debounceTime, distinctUntilChanged } from "rxjs";
 import { PictureList } from "../../components/picture-list/picture-list";
-import { ISearchParams, PictureService } from '../../picture.service';
+import { ISearchParams, PictureService } from '../../services/picture.service';
 
 @Component({
   selector: 'app-home',

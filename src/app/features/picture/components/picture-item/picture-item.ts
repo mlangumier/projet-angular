@@ -8,7 +8,7 @@ import {
   MatCardImage, MatCardTitle
 } from "@angular/material/card";
 import { RouterLink } from "@angular/router";
-import { IPicture } from "../../picture.model";
+import { IPicture } from "../../models/picture.model";
 
 @Component({
   selector: 'app-picture-item',

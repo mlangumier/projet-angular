@@ -1,6 +1,6 @@
 import { httpResource } from "@angular/common/http";
 import { Injectable, Signal } from '@angular/core';
-import { IPaginatedPictures, IPicture } from "./picture.model";
+import { IPaginatedPictures, IPicture } from "../models/picture.model";
 
 export interface ISearchParams {
   search?: string;
@@ -21,7 +21,7 @@ export class PictureService {
     }), { parse: (response: any) => this.adaptPaginatedResults(response) })
   }
 
-  getPicture(id: Signal<string>) {
+  getPicture(id: Signal<number>) {
     return httpResource<IPicture>(() => ({
       url: `/picture/${ id() }`,
       method: "GET"
@@ -43,7 +43,6 @@ export class PictureService {
   }
 
   private adaptPictureResponse(res: any): IPicture {
-    console.log(res);
     return {
       id: res.id,
       image: res.image,

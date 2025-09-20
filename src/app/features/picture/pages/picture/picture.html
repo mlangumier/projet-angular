@@ -25,13 +25,37 @@
     </div>
   </section>
 
-  <section class="comments">
-    <h2>Commentaires (0)</h2>
-    <!-- Fetch comments & get number of comments -->
-    <p>(À venir)</p>
-    <div class="form">
-      <p>(Write a comment)</p>
-    </div>
+  <section class="comments-block">
+    <h2>Commentaires ({{ commentsResponse.value()?.length || 0 }})</h2>
+
+    @if (commentsResponse.hasValue()) {
+      <div class="comments-list">
+        @if (commentsResponse.value().length > 0) {
+          @for (comment of commentsResponse.value(); track comment.id) {
+            <mat-card appearance="outlined" class="card">
+              <mat-card-header>
+                <mat-card-subtitle>
+                  <span class="author-link">{{ comment.author.displayName }}</span> a écrit:
+                </mat-card-subtitle>
+              </mat-card-header>
+              <mat-card-content class="content">"{{ comment.content }}"</mat-card-content>
+              <mat-card-footer class="date">Posté le {{ comment.createdAt | date :'d MMMM y à H:mm' }}</mat-card-footer>
+            </mat-card>
+          }
+        } @else {
+          <p class="no-comments">Cette image n'a pas encore de commentaires.</p>
+          <!--<p class="no-comments">Soyez la première personne à écrire un commentaire sur cette image.</p>-->
+        }
+      </div>
+      <!--<div class="form">-->
+          <!--  <h3>Écrivez votre commentaire :</h3>-->
+          <!--  <p>(Bientôt disponible)</p>-->
+          <!--</div>-->
+    } @else if (commentsResponse.isLoading()) {
+      <p>Chargement des commentaires...</p>
+    } @else {
+      <p>Impossible de récupérer les commentaires de cette. Veuillez recharger votre page.</p>
+    }
   </section>
 } @else if (pictureResponse.isLoading()) {
   <mat-spinner></mat-spinner>
