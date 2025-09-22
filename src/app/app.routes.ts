@@ -11,7 +11,7 @@ export const routes: Routes = [
     title: `Image | Angular ORM`
   },
   {
-    path: 'picture/user/:userId',
+    path: 'user/:userId/pictures',
     loadComponent: () => import('./features/picture/pages/user-pictures/user-pictures').then(m => m.UserPictures),
     title: `Gallerie | Angular ORM`
   },

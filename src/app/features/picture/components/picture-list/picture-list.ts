@@ -14,6 +14,7 @@ export class PictureList {
   readonly pictureList = input.required<IPicture[]>();
   readonly pagination = input.required<IPagination>();
   readonly handlePagination = output<PageEvent>();
+  readonly layoutClass = input<"grid" | "list">("grid");
 
   emitPaginationEvent(event: PageEvent) {
     this.handlePagination.emit(event)

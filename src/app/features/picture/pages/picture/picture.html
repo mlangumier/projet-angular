@@ -19,7 +19,11 @@
       </p>
 
       <p>Postée le {{ picture.createdAt | date: 'd MMMM y à H:mm' }} par
-        <span class="author-link">{{ picture.author.displayName }}</span>
+        <a
+            [routerLink]="['/user', picture.author.id, 'pictures']"
+            [queryParams]="{author: picture.author.displayName}"
+            class="author-link"
+        >{{ picture.author.displayName }}</a>
       </p>
 
     </div>

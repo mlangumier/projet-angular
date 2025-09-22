@@ -1,5 +1,18 @@
 <section id="title" class="page-title">
-  <h1>Images publiées par <span class="author-name">{{ authorName }}</span></h1>
+  @if (isCurrentUser()) {
+    <h1>Mes images</h1>
+    <!-- TODO: enable link & add correct url -->
+    <a matFab
+        [routerLink]="['/user', userId(), 'pictures/editor']"
+        aria-label="publier une nouvelle image"
+        title="Publier une nouvelle image"
+        disabled
+    >
+      <mat-icon>add</mat-icon>
+    </a>
+  } @else {
+    <h1>Images publiées par <span class="author-name">{{ authorName }}</span></h1>
+  }
 </section>
 
 <section class="pictures">
@@ -11,6 +24,7 @@
           [pictureList]="paginatedPictures.value().content"
           [pagination]="paginatedPictures.value()"
           (handlePagination)="handlePaginationEvent($event)"
+          [layoutClass]="'list'"
       ></app-picture-list>
     }
   } @else if (paginatedPictures.error()) {

@@ -1,7 +1,10 @@
-import { Component, inject, input, signal } from '@angular/core';
+import { Component, computed, inject, input, signal } from '@angular/core';
+import { MatFabButton } from "@angular/material/button";
+import { MatIcon } from "@angular/material/icon";
 import { PageEvent } from "@angular/material/paginator";
 import { MatProgressSpinner } from "@angular/material/progress-spinner";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, RouterLink } from "@angular/router";
+import { AuthService } from "../../../../core/auth/services/auth-service";
 import { PictureList } from "../../components/picture-list/picture-list";
 import { ISearchParams, PictureService } from "../../services/picture.service";
 
@@ -9,7 +12,10 @@ import { ISearchParams, PictureService } from "../../services/picture.service";
   selector: 'app-user-pictures',
   imports: [
     MatProgressSpinner,
-    PictureList
+    PictureList,
+    MatFabButton,
+    MatIcon,
+    RouterLink
   ],
   templateUrl: './user-pictures.html',
   styleUrl: './user-pictures.scss'
@@ -19,7 +25,13 @@ export class UserPictures {
   private readonly pictureService = inject(PictureService);
   private readonly params = signal<ISearchParams>({});
   private readonly route = inject(ActivatedRoute);
+  private readonly authService = inject(AuthService);
 
+  protected isCurrentUser = computed<boolean>(() => {
+    const loggedInUser = this.authService.currentUser();
+    if (!loggedInUser) return false;
+    return this.userId() == loggedInUser.id; // Double-equal: value only because of query-param (string)
+  });
   protected readonly authorName = this.route.snapshot.queryParamMap.get("author"); //TODO: Switch this to UserService.getUser(userId);
   protected readonly paginatedPictures = this.pictureService.getPicturesFromUser(this.userId, this.params);
 

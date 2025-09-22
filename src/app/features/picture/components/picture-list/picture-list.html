@@ -1,7 +1,10 @@
-<ul class="grid">
+<ul class="picture-list" [class]="layoutClass()">
   @for (picture of pictureList(); track picture.id) {
     <li class="grid-item">
-      <app-picture-item [picture]="picture"></app-picture-item>
+      <app-picture-item
+          [picture]="picture"
+          [layoutClass]="layoutClass() === 'grid' ? 'vertical' : 'horizontal'"
+      ></app-picture-item>
     </li>
   }
 </ul>

@@ -27,4 +27,5 @@ import { IPicture } from "../../models/picture.model";
 })
 export class PictureItem {
   readonly picture = input.required<IPicture>();
+  layoutClass = input<"horizontal" | "vertical">("vertical");
 }

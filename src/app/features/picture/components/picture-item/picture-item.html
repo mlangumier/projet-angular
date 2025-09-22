@@ -1,12 +1,12 @@
-<mat-card class="card">
+<mat-card [class]="layoutClass()">
   <img mat-card-image src="{{ picture().thumbnailLink }}" alt="{{ picture().title }}">
 
-  <mat-card-content class="content">
-    <mat-card-title class="title">{{ picture().title }}</mat-card-title>
+  <mat-card-content>
+    <mat-card-title>{{ picture().title }}</mat-card-title>
     <p class="description">{{ picture().description }}</p>
     <p class="meta">Postée le {{ picture().createdAt | date }} par
       <a
-          [routerLink]="['/picture/user', picture().author.id]"
+          [routerLink]="['/user', picture().author.id, 'pictures']"
           [queryParams]="{author: picture().author.displayName}"
           aria-label="voir l'activité de ${{ picture().author.displayName }}"
           class="author-link"
@@ -14,7 +14,7 @@
     </p>
   </mat-card-content>
 
-  <mat-card-actions class="actions">
+  <mat-card-actions>
     <!-- Replace with heart icon & fill if user has liked before + add "like" event method -->
     <button matButton>AIMER</button>
     <a matButton [routerLink]="['/picture', picture().id]">EN SAVOIR PLUS</a>

@@ -1,3 +1,10 @@
+.page-title {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .author-name {
   color: var(--mat-sys-primary);
   text-transform: uppercase;

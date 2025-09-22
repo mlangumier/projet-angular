@@ -2,6 +2,7 @@ import { DatePipe, NgOptimizedImage } from "@angular/common";
 import { Component, inject, input } from '@angular/core';
 import { MatIcon } from "@angular/material/icon";
 import { MatProgressSpinner } from "@angular/material/progress-spinner";
+import { RouterLink } from "@angular/router";
 import { CommentList } from "../../components/comment-list/comment-list";
 import { CommentService } from "../../services/comment.service";
 import { PictureService } from "../../services/picture.service";
@@ -13,7 +14,8 @@ import { PictureService } from "../../services/picture.service";
     NgOptimizedImage,
     DatePipe,
     MatIcon,
-    CommentList
+    CommentList,
+    RouterLink
   ],
   templateUrl: './picture.html',
   styleUrl: './picture.scss'
