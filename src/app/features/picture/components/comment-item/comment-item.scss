@@ -1,0 +1,18 @@
+.card {
+  margin-bottom: 0.5rem;
+  padding: 0.5rem 0.75rem 0.25rem;
+
+  mat-card-header {
+    padding: 0;
+  }
+
+  .content {
+    margin: 0.5rem 1rem;
+  }
+
+  .date {
+    text-align: right;
+    font-size: var(--mat-sys-body-small-size);
+    color: var(--mat-sys-on-surface-variant);
+  }
+}

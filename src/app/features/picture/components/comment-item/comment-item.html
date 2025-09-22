@@ -1,0 +1,13 @@
+@if (comment()) {
+  <mat-card appearance="outlined" class="card">
+    <mat-card-header>
+      <mat-card-subtitle>
+        <span class="author-link">{{ comment().author.displayName }}</span> a écrit:
+      </mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content class="content">"{{ comment().content }}"</mat-card-content>
+    <mat-card-footer class="date">Posté le {{ comment().createdAt | date :'d MMMM y à H:mm' }}</mat-card-footer>
+  </mat-card>
+} @else {
+  <p>Une erreur est survenue en essayant d'afficher ce commentaire.</p>
+}

@@ -42,25 +42,6 @@
 .comments-block {
   margin-top: 2rem;
 
-  .card {
-    margin-bottom: 0.5rem;
-    padding: 0.5rem 0.75rem 0.25rem;
-
-    mat-card-header {
-      padding: 0;
-    }
-
-    .content {
-      margin: 0.5rem 1rem;
-    }
-    .date {
-      text-align: right;
-      //margin: 0 0.75rem 0.25rem 0;
-      font-size: var(--mat-sys-body-small-size);
-      color: var(--mat-sys-on-surface-variant);
-    }
-  }
-
   .no-comments {
     color: var(--mat-sys-on-surface-variant);
     margin-left: 2rem;

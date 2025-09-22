@@ -11,8 +11,8 @@ Créer une application Angular et créer une interface graphique responsive pour
 - [x] Formulaire d'inscription
 - [x] Formulaire d'authentification
 - [x] Afficher les dernières images paginées
-- [ ] Afficher les images d'un user spécifique
 - [x] Afficher une image spécifique et ses commentaires
+- [ ] Afficher les images d'un user spécifique
 - [ ] Poster une image
 - [ ] Poster un commentaire
 - [ ] Liker une image et afficher le nombre de like et le status (déjà likée ou non)

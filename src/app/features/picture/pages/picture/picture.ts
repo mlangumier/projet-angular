@@ -1,14 +1,8 @@
 import { DatePipe, NgOptimizedImage } from "@angular/common";
 import { Component, inject, input } from '@angular/core';
-import {
-  MatCard,
-  MatCardContent,
-  MatCardFooter, MatCardHeader,
-  MatCardSubtitle,
-  MatCardTitle
-} from "@angular/material/card";
 import { MatIcon } from "@angular/material/icon";
 import { MatProgressSpinner } from "@angular/material/progress-spinner";
+import { CommentList } from "../../components/comment-list/comment-list";
 import { CommentService } from "../../services/comment.service";
 import { PictureService } from "../../services/picture.service";
 
@@ -19,12 +13,7 @@ import { PictureService } from "../../services/picture.service";
     NgOptimizedImage,
     DatePipe,
     MatIcon,
-    MatCard,
-    MatCardTitle,
-    MatCardContent,
-    MatCardFooter,
-    MatCardSubtitle,
-    MatCardHeader
+    CommentList
   ],
   templateUrl: './picture.html',
   styleUrl: './picture.scss'

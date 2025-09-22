@@ -29,24 +29,7 @@
     <h2>Commentaires ({{ commentsResponse.value()?.length || 0 }})</h2>
 
     @if (commentsResponse.hasValue()) {
-      <div class="comments-list">
-        @if (commentsResponse.value().length > 0) {
-          @for (comment of commentsResponse.value(); track comment.id) {
-            <mat-card appearance="outlined" class="card">
-              <mat-card-header>
-                <mat-card-subtitle>
-                  <span class="author-link">{{ comment.author.displayName }}</span> a écrit:
-                </mat-card-subtitle>
-              </mat-card-header>
-              <mat-card-content class="content">"{{ comment.content }}"</mat-card-content>
-              <mat-card-footer class="date">Posté le {{ comment.createdAt | date :'d MMMM y à H:mm' }}</mat-card-footer>
-            </mat-card>
-          }
-        } @else {
-          <p class="no-comments">Cette image n'a pas encore de commentaires.</p>
-          <!--<p class="no-comments">Soyez la première personne à écrire un commentaire sur cette image.</p>-->
-        }
-      </div>
+      <app-comment-list [commentsList]="commentsResponse.value()"></app-comment-list>
       <!--<div class="form">-->
           <!--  <h3>Écrivez votre commentaire :</h3>-->
           <!--  <p>(Bientôt disponible)</p>-->

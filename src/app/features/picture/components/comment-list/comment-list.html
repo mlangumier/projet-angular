@@ -1,0 +1,10 @@
+<div class="comments-list">
+  @if (commentsList().length > 0) {
+    @for (comment of commentsList(); track comment.id) {
+      <app-comment-item [comment]="comment"></app-comment-item>
+    }
+  } @else {
+    <p class="no-comments">Aucun commentaire trouvé pour cette image.</p>
+    <!--<p class="no-comments">Soyez la première personne à écrire un commentaire sur cette image.</p>-->
+  }
+</div>
