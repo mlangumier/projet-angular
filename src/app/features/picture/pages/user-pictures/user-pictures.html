@@ -1,19 +1,8 @@
 <section id="title" class="page-title">
-  <h1>Dernières images</h1>
+  <h1>Images publiées par <span class="author-name">{{ authorName }}</span></h1>
 </section>
 
 <section class="pictures">
-  <div class="filters">
-    <mat-form-field>
-      <mat-label>Rechercher une image</mat-label>
-      <input type="text"
-          matInput
-          [value]="search() || ''"
-          (input)="search.set($any($event.target).value)"
-      >
-    </mat-form-field>
-  </div>
-
   @if (paginatedPictures.hasValue()) {
     @if (paginatedPictures.value().empty) {
       <p class="error">Aucune image ne correspond à la recherche.</p>

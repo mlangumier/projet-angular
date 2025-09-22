@@ -10,6 +10,11 @@ export const routes: Routes = [
     loadComponent: () => import('./features/picture/pages/picture/picture').then(m => m.Picture),
     title: `Image | Angular ORM`
   },
+  {
+    path: 'picture/user/:userId',
+    loadComponent: () => import('./features/picture/pages/user-pictures/user-pictures').then(m => m.UserPictures),
+    title: `Gallerie | Angular ORM`
+  },
   { path: 'login', component: Login, title: "Connexion | Angular ORM" },
   { path: 'register', component: Register, title: "Inscription | Angular ORM" },
   { path: '**', redirectTo: '', pathMatch: 'full' },

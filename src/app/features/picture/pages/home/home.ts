@@ -1,7 +1,7 @@
 import { Component, effect, inject, model, signal } from '@angular/core';
 import { toObservable, toSignal } from "@angular/core/rxjs-interop";
 import { MatFormField, MatInput, MatLabel } from "@angular/material/input";
-import { MatPaginator, PageEvent } from "@angular/material/paginator";
+import { PageEvent } from "@angular/material/paginator";
 import { MatProgressSpinner } from '@angular/material/progress-spinner';
 import { debounceTime, distinctUntilChanged } from "rxjs";
 import { PictureList } from "../../components/picture-list/picture-list";
@@ -9,7 +9,7 @@ import { ISearchParams, PictureService } from '../../services/picture.service';
 
 @Component({
   selector: 'app-home',
-  imports: [ MatProgressSpinner, PictureList, MatPaginator, MatInput, MatFormField, MatLabel ],
+  imports: [ MatProgressSpinner, PictureList, MatInput, MatFormField, MatLabel ],
   templateUrl: './home.html',
   styleUrl: './home.scss',
 })

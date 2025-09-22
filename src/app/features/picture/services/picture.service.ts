@@ -28,6 +28,14 @@ export class PictureService {
     }), { parse: (response: any) => this.adaptPictureResponse(response) })
   }
 
+  getPicturesFromUser(id: Signal<number>, paramSignal: Signal<ISearchParams>) {
+    return httpResource<IPaginatedPictures>(() => ({
+      url: `/picture/user/${ id() }`,
+      method: "GET",
+      params: { ...paramSignal() }
+    }), { parse: (response: any) => this.adaptPaginatedResults(response) })
+  }
+
   private adaptPaginatedResults(res: any): IPaginatedPictures {
     return {
       totalElements: res.totalElements,

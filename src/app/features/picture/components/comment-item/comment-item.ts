@@ -7,6 +7,7 @@ import {
   MatCardHeader,
   MatCardSubtitle
 } from "@angular/material/card";
+import { RouterLink } from "@angular/router";
 import { IComment } from "../../models/comment.model";
 
 @Component({
@@ -17,7 +18,8 @@ import { IComment } from "../../models/comment.model";
     MatCardContent,
     MatCardFooter,
     MatCardHeader,
-    MatCardSubtitle
+    MatCardSubtitle,
+    RouterLink
   ],
   templateUrl: './comment-item.html',
   styleUrl: './comment-item.scss'

@@ -1,3 +1,5 @@
+import { IPagination } from "../../../shared/common.model";
+
 export interface IPicture {
   id: number;
   title: string;
@@ -13,14 +15,6 @@ export interface IPicture {
   };
 }
 
-export interface IPaginatedPictures {
-  numberOfElements: number;
-  totalElements: number;
-  totalPages: number;
-  empty: boolean;
-  first: boolean;
-  last: boolean;
-  pageNumber: number;
-  pageSize: number;
+export interface IPaginatedPictures extends IPagination {
   content: IPicture[];
 }

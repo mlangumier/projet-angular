@@ -5,3 +5,14 @@
     </li>
   }
 </ul>
+
+<mat-paginator
+    (page)="emitPaginationEvent($event)"
+    [length]="pagination().totalElements"
+    [pageIndex]="pagination().pageNumber"
+    [pageSize]="pagination().pageSize"
+    [pageSizeOptions]="[5, 10, 20, 50]"
+    showFirstLastButtons
+    [disabled]="pagination().empty"
+    aria-label="Sélectionner une page"
+></mat-paginator>

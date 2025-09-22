@@ -5,10 +5,12 @@
     <mat-card-title class="title">{{ picture().title }}</mat-card-title>
     <p class="description">{{ picture().description }}</p>
     <p class="meta">Postée le {{ picture().createdAt | date }} par
-      <span
+      <a
+          [routerLink]="['/picture/user', picture().author.id]"
+          [queryParams]="{author: picture().author.displayName}"
           aria-label="voir l'activité de ${{ picture().author.displayName }}"
           class="author-link"
-      >{{ picture().author.displayName }}</span>
+      >{{ picture().author.displayName }}</a>
     </p>
   </mat-card-content>
 
