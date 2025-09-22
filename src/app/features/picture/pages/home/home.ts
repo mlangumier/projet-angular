@@ -5,6 +5,7 @@ import { PageEvent } from "@angular/material/paginator";
 import { MatProgressSpinner } from '@angular/material/progress-spinner';
 import { debounceTime, distinctUntilChanged } from "rxjs";
 import { PictureList } from "../../components/picture-list/picture-list";
+import { IPaginatedPictures, IPicture } from "../../models/picture.model";
 import { ISearchParams, PictureService } from '../../services/picture.service';
 
 @Component({
@@ -34,5 +35,15 @@ export class Home {
   handlePaginationEvent(event: PageEvent) {
     const newParams: ISearchParams = { pageNumber: event.pageIndex, pageSize: event.pageSize };
     this.params.update(p => ({ ...p, ...newParams }));
+  }
+
+  toggleLikePicture(id: number) {
+    this.pictureService.likePicture(id).subscribe((response: IPicture) => {
+      const pictures = this.paginatedPictures.value()?.content.map(p => p.id === response.id ? response : p) || [];
+      this.paginatedPictures.update(prev => ({
+        ...prev,
+        content: pictures
+      }) as IPaginatedPictures);
+    });
   }
 }

@@ -1,13 +1,16 @@
 import { DatePipe } from "@angular/common";
-import { Component, input } from '@angular/core';
-import { MatButton } from "@angular/material/button";
+import { Component, computed, inject, input, output } from '@angular/core';
+import { MatButton, MatIconButton } from "@angular/material/button";
 import {
   MatCard,
   MatCardActions,
   MatCardContent,
   MatCardImage, MatCardTitle
 } from "@angular/material/card";
+import { MatIcon } from "@angular/material/icon";
 import { RouterLink } from "@angular/router";
+import { AuthService } from "../../../../core/auth/services/auth-service";
+import { SnackbarUtilService } from "../../../../shared/utils/snackbar-util.service";
 import { IPicture } from "../../models/picture.model";
 
 @Component({
@@ -21,11 +24,31 @@ import { IPicture } from "../../models/picture.model";
     MatCardImage,
     MatCardTitle,
     RouterLink,
+    MatIcon,
+    MatIconButton,
   ],
   templateUrl: './picture-item.html',
   styleUrl: './picture-item.scss'
 })
 export class PictureItem {
   readonly picture = input.required<IPicture>();
-  layoutClass = input<"horizontal" | "vertical">("vertical");
+  private readonly authService = inject(AuthService);
+  private readonly snackbar = inject(SnackbarUtilService);
+  readonly layoutClass = input<"horizontal" | "vertical">("vertical");
+  readonly like = output<number>();
+
+  protected readonly isAlreadyLiked = computed<boolean>(() => {
+    const user = this.authService.currentUser();
+    if (!user || !this.authService.isAuthenticated()) return false;
+    return !!this.picture().likes.find((u => u.id === user.id));
+  })
+
+
+  handleLike() {
+    if (!this.authService.isAuthenticated()) {
+      this.snackbar.open("Erreur: vous devez être connecté pour aimer une image");
+    }
+
+    this.like.emit(this.picture().id);
+  }
 }

@@ -23,7 +23,7 @@
       <app-picture-list
           [pictureList]="paginatedPictures.value().content"
           [pagination]="paginatedPictures.value()"
-          (handlePagination)="handlePaginationEvent($event)"
+          (paginationChanges)="handlePaginationEvent($event)"
           [layoutClass]="'list'"
       ></app-picture-list>
     }

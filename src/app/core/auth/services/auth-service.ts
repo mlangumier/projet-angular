@@ -1,14 +1,14 @@
 import { HttpClient } from "@angular/common/http";
 import { afterNextRender, computed, inject, Injectable, signal } from '@angular/core';
 import { Observable, tap } from "rxjs";
-import { ICredentials, IRegister, IUser } from "../user.model";
+import { ICredentials, IRegister, IUserAuth } from "../auth.model";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   private readonly http = inject(HttpClient);
-  private readonly _currentUser = signal<IUser | null>(null);
+  private readonly _currentUser = signal<IUserAuth | null>(null);
   currentUser = this._currentUser.asReadonly();
   isAuthenticated = computed(() => !!this.currentUser());
 
@@ -27,19 +27,19 @@ export class AuthService {
     return this.http.get<boolean>(`/user/available/${ email }`);
   }
 
-  register(payload: IRegister): Observable<IUser> {
-    return this.http.post<IUser>(`/user`, payload).pipe(tap((response: IUser) => this.setUserAuth(response)));
+  register(payload: IRegister): Observable<IUserAuth> {
+    return this.http.post<IUserAuth>(`/user`, payload).pipe(tap((response: IUserAuth) => this.setUserAuth(response)));
   }
 
-  login(credentials: ICredentials): Observable<IUser> {
+  login(credentials: ICredentials): Observable<IUserAuth> {
     const btoaCredentials = `${ credentials.email }:${ credentials.password }`
 
-    return this.http.get<IUser>(`/account`, {
+    return this.http.get<IUserAuth>(`/account`, {
       headers: {
         "Authorization": `Basic ${ btoa(btoaCredentials) }`,
       },
       withCredentials: true
-    }).pipe(tap((response: IUser) => this.setUserAuth(response)))
+    }).pipe(tap((response: IUserAuth) => this.setUserAuth(response)))
   }
 
   logout() {
@@ -50,7 +50,7 @@ export class AuthService {
   }
 
   // Helper method that sets the authenticated user in the app's state & local storage
-  private setUserAuth(user: IUser): void {
+  private setUserAuth(user: IUserAuth): void {
     localStorage.setItem("user", JSON.stringify(user));
     this._currentUser.set(user);
   }

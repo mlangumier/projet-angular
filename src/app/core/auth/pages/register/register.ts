@@ -7,7 +7,7 @@ import { MatInput } from '@angular/material/input';
 import { Router, RouterLink } from '@angular/router';
 import { SnackbarUtilService } from "../../../../shared/utils/snackbar-util.service";
 import { AuthService } from '../../services/auth-service';
-import { IRegister } from '../../user.model';
+import { IRegister } from '../../auth.model';
 import { passwordMatchValidator } from '../../../../shared/directives/password-match.directive';
 
 @Component({

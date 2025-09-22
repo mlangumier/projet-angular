@@ -6,7 +6,7 @@ import { MatInput, MatLabel } from "@angular/material/input";
 import { Router, RouterLink } from "@angular/router";
 import { SnackbarUtilService } from "../../../../shared/utils/snackbar-util.service";
 import { AuthService } from "../../services/auth-service";
-import { ICredentials, IUser } from "../../user.model";
+import { ICredentials, IUserAuth } from "../../auth.model";
 
 @Component({
   selector: 'app-login',
@@ -45,11 +45,11 @@ private readonly snackbar = inject(SnackbarUtilService);
     }
 
     this.authService.login(credentials).subscribe({
-      next: (response: IUser) => {
-        this.snackbar.open("Connexion réussie ! Vous allez être redirigé vers le contenu du site.");
+      next: (response: IUserAuth) => {
+        this.snackbar.open("Connexion réussie ! Vous allez être redirigé vers le contenu du site.", undefined, 3000);
         setTimeout(() => {
           this.router.navigate([ '/' ])
-        }, 5000)
+        }, 3000)
       },
       error: (error) => {
         this.snackbar.open("Une erreur est survenue. Veuillez réessayer.");

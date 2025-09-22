@@ -13,10 +13,11 @@ import { PictureItem } from "../picture-item/picture-item";
 export class PictureList {
   readonly pictureList = input.required<IPicture[]>();
   readonly pagination = input.required<IPagination>();
-  readonly handlePagination = output<PageEvent>();
+  readonly paginationChanges = output<PageEvent>();
+  readonly like = output<number>();
   readonly layoutClass = input<"grid" | "list">("grid");
 
-  emitPaginationEvent(event: PageEvent) {
-    this.handlePagination.emit(event)
+  handlePaginationEvent(event: PageEvent) {
+    this.paginationChanges.emit(event)
   }
 }

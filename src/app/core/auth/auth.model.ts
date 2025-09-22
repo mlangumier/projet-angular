@@ -1,6 +1,6 @@
 export type TRole = "ROLE_USER" | "ROLE_ADMIN";
 
-export interface IUser {
+export interface IUserAuth {
   id: number;
   email: string;
   displayName: string;

@@ -21,7 +21,8 @@
       <app-picture-list
           [pictureList]="paginatedPictures.value().content"
           [pagination]="paginatedPictures.value()"
-          (handlePagination)="handlePaginationEvent($event)"
+          (paginationChanges)="handlePaginationEvent($event)"
+          (like)="toggleLikePicture($event)"
       ></app-picture-list>
     }
   } @else if (paginatedPictures.error()) {

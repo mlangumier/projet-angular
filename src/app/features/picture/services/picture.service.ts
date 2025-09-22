@@ -1,6 +1,8 @@
-import { httpResource } from "@angular/common/http";
-import { Injectable, Signal } from '@angular/core';
+import { HttpClient, httpResource } from "@angular/common/http";
+import { inject, Injectable, Signal } from '@angular/core';
+import { map, tap } from "rxjs";
 import { IPaginatedPictures, IPicture } from "../models/picture.model";
+import { IUser } from "../models/user.model";
 
 export interface ISearchParams {
   search?: string;
@@ -12,6 +14,7 @@ export interface ISearchParams {
   providedIn: 'root'
 })
 export class PictureService {
+  private readonly http = inject(HttpClient);
 
   getAllPictures(paramSignal: Signal<ISearchParams>) {
     return httpResource<IPaginatedPictures>(() => ({
@@ -36,12 +39,16 @@ export class PictureService {
     }), { parse: (response: any) => this.adaptPaginatedResults(response) })
   }
 
+  likePicture(id: number) {
+    return this.http.patch<IPicture>(`/picture/${ id }/like`, {}, { withCredentials: true }).pipe(map(response => this.adaptPictureResponse(response)));
+  }
+
   private adaptPaginatedResults(res: any): IPaginatedPictures {
     return {
       totalElements: res.totalElements,
       totalPages: res.totalPages,
       pageSize: res.size,
-      content: res.content.map((picture: any) => this.adaptPictureResponse(picture)),
+      content: res.content.map((picture: any) => this.adaptPictureResponse(picture)) || [],
       pageNumber: res.number,
       numberOfElements: res.numberOfElements,
       first: res.first,
@@ -61,7 +68,10 @@ export class PictureService {
         id: res.author.id,
         displayName: res.author.displayName
       },
-      likes: res.likes.length,
+      likes: res.likes.map((rawUser: any): IUser => ({
+        id: rawUser.id,
+        displayName: rawUser.displayName
+      })),
       imageLink: res.imageLink,
       thumbnailLink: res.thumbnailLink
     };

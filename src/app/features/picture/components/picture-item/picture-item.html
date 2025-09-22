@@ -15,8 +15,14 @@
   </mat-card-content>
 
   <mat-card-actions>
-    <!-- Replace with heart icon & fill if user has liked before + add "like" event method -->
-    <button matButton>AIMER</button>
+    <button matButton class="btn-like" (click)="handleLike()">
+      @if (isAlreadyLiked()) {
+        <mat-icon fontIcon="favorite" aria-label="ne plus aimer l'image"></mat-icon>
+      } @else {
+        <mat-icon fontIcon="favorite_outline" aria-label="aimer l'image"></mat-icon>
+      }
+      <span class="number-of-likes">({{ picture().likes.length }})</span>
+    </button>
     <a matButton [routerLink]="['/picture', picture().id]">EN SAVOIR PLUS</a>
   </mat-card-actions>
 </mat-card>

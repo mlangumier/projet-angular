@@ -11,7 +11,7 @@
       <p class="likes">
         <!-- Either switch "favorite" / "favorite_outline" or icon completely on click -->
         <mat-icon fontIcon="favorite_outlined"></mat-icon>
-        @if (picture.likes > 0) {
+        @if (picture.likes.length > 0) {
           {{ picture.likes }} personnes aiment cette image
         } @else {
           Soyez la première personne à aimer cette image!

@@ -1,4 +1,5 @@
 import { IPagination } from "../../../shared/common.model";
+import { IUser } from "./user.model";
 
 export interface IPicture {
   id: number;
@@ -8,11 +9,8 @@ export interface IPicture {
   imageLink: string;
   thumbnailLink: string;
   createdAt: Date;
-  likes: number;
-  author: {
-    id: number;
-    displayName: string;
-  };
+  likes: IUser[];
+  author: IUser
 }
 
 export interface IPaginatedPictures extends IPagination {

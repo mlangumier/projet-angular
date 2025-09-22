@@ -3,6 +3,7 @@
     <li class="grid-item">
       <app-picture-item
           [picture]="picture"
+          (like)="like.emit($event)"
           [layoutClass]="layoutClass() === 'grid' ? 'vertical' : 'horizontal'"
       ></app-picture-item>
     </li>
@@ -10,7 +11,7 @@
 </ul>
 
 <mat-paginator
-    (page)="emitPaginationEvent($event)"
+    (page)="handlePaginationEvent($event)"
     [length]="pagination().totalElements"
     [pageIndex]="pagination().pageNumber"
     [pageSize]="pagination().pageSize"
