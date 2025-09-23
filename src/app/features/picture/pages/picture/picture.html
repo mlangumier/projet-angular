@@ -27,7 +27,7 @@
 
       <p>Postée le {{ picture.createdAt | date: 'd MMMM y à H:mm' }} par
         <a
-            [routerLink]="['/user', picture.author.id, 'pictures']"
+            [routerLink]="['/user', picture.author.id, 'picture']"
             [queryParams]="{author: picture.author.displayName}"
             class="author-link"
         >{{ picture.author.displayName }}</a>

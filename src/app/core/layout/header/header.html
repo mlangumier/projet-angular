@@ -20,7 +20,7 @@
         <mat-menu #menu="matMenu" class="menu-user">
           <a mat-menu-item
               aria-label="vers mes images"
-              [routerLink]="['/user', user()?.id, 'pictures']"
+              [routerLink]="['/user', user()?.id, 'picture']"
               [queryParams]="{ author: user()?.displayName }"
           >
             <mat-icon>photo_library</mat-icon>
@@ -28,7 +28,7 @@
           </a>
           <a mat-menu-item
               aria-label="ajouter une image"
-              [routerLink]="['/user', user()?.id, 'pictures/editor']"
+              [routerLink]="['/user', user()?.id, 'picture/editor']"
               disabled
           >
             <mat-icon>add</mat-icon>

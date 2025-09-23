@@ -43,6 +43,14 @@ export class PictureService {
     return this.http.patch<IPicture>(`/picture/${ id }/like`, {}, { withCredentials: true }).pipe(map(response => this.adaptPictureResponse(response)));
   }
 
+  createPicture(payload: any) {
+    return this.http.post<IPicture>(`/picture`, payload, { withCredentials: true }).pipe(map(response => this.adaptPictureResponse(response)));
+  }
+
+  uploadFile(file: File) {
+    return this.http.post(`/picture/upload`, file, { withCredentials: true });
+  }
+
   private adaptPaginatedResults(res: any): IPaginatedPictures {
     return {
       totalElements: res.totalElements,

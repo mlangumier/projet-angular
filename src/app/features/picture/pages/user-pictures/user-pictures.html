@@ -1,12 +1,10 @@
 <section id="title" class="page-title">
   @if (isCurrentUser()) {
     <h1>Mes images</h1>
-    <!-- TODO: enable link & add correct url -->
     <a matFab
-        [routerLink]="['/user', userId(), 'pictures/editor']"
+        [routerLink]="['/user', userId(), 'picture', 'editor']"
         aria-label="publier une nouvelle image"
         title="Publier une nouvelle image"
-        disabled
     >
       <mat-icon>add</mat-icon>
     </a>

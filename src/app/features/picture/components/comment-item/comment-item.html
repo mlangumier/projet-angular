@@ -3,7 +3,7 @@
     <mat-card-header>
       <mat-card-subtitle>
         <a
-            [routerLink]="['/user', comment().author.id, 'pictures']"
+            [routerLink]="['/user', comment().author.id, 'picture']"
             [queryParams]="{author: comment().author.displayName}"
             class="author-link"
         >{{ comment().author.displayName }}</a> a écrit:

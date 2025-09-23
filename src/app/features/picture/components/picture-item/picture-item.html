@@ -6,7 +6,7 @@
     <p class="description">{{ picture().description }}</p>
     <p class="meta">Postée le {{ picture().createdAt | date }} par
       <a
-          [routerLink]="['/user', picture().author.id, 'pictures']"
+          [routerLink]="['/user', picture().author.id, 'picture']"
           [queryParams]="{author: picture().author.displayName}"
           aria-label="voir l'activité de ${{ picture().author.displayName }}"
           class="author-link"

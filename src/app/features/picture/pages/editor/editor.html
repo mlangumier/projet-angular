@@ -1,1 +1,51 @@
-<p>editor works!</p>
+<section class="page-title">
+  <h1>{{ pictureId() ? "Modifier l'image" : "Nouvelle image" }}</h1>
+</section>
+
+<section class="editor">
+  <form class="form" [formGroup]="form" (ngSubmit)="submitForm()">
+    <div class="content">
+      <div class="text-fields">
+        <mat-form-field>
+          <mat-label>Titre de l'image</mat-label>
+          <input matInput formControlName="title" min="2" required>
+          @if (title && title.invalid && (title.dirty || title.touched)) {
+            <mat-error>Veuillez donner un titre à votre image</mat-error>
+          }
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Décrivez votre image en quelques mots</mat-label>
+          <textarea matInput formControlName="description" required rows="5"></textarea>
+          @if (description && description.invalid && (description.dirty || description.touched)) {
+            <mat-error>Veuillez ajouter une description à l'image</mat-error>
+          }
+        </mat-form-field>
+      </div>
+
+      <div class="picture-field">
+        <div class="field">
+          <label for="picture">Choisir une image</label>
+          <input type="file"
+              id="picture"
+              required
+              accept="image/*"
+              (change)="onPictureChange($event)"
+          >
+        </div>
+
+        <div class="picture">
+          @if (picturePreview()) {
+            <img [src]="picturePreview()" alt="" height="200" width="200"/>
+          } @else {
+            <div style="height: 200px; width: 200px; background-color: lightgray; opacity: 0.2;"></div>
+          }
+        </div>
+      </div>
+    </div>
+
+    <div class="actions">
+      <button matButton="filled" type="submit">Créer l'image</button>
+    </div>
+  </form>
+</section>
