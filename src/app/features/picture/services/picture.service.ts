@@ -71,7 +71,7 @@ export class PictureService {
       likes: res.likes.map((rawUser: any): IUser => ({
         id: rawUser.id,
         displayName: rawUser.displayName
-      })),
+      })) || [],
       imageLink: res.imageLink,
       thumbnailLink: res.thumbnailLink
     };

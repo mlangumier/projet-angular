@@ -1,6 +1,6 @@
 import { DatePipe } from "@angular/common";
 import { Component, computed, inject, input, output } from '@angular/core';
-import { MatButton, MatIconButton } from "@angular/material/button";
+import { MatButton } from "@angular/material/button";
 import {
   MatCard,
   MatCardActions,
@@ -25,7 +25,6 @@ import { IPicture } from "../../models/picture.model";
     MatCardTitle,
     RouterLink,
     MatIcon,
-    MatIconButton,
   ],
   templateUrl: './picture-item.html',
   styleUrl: './picture-item.scss'
@@ -39,14 +38,14 @@ export class PictureItem {
 
   protected readonly isAlreadyLiked = computed<boolean>(() => {
     const user = this.authService.currentUser();
-    if (!user || !this.authService.isAuthenticated()) return false;
-    return !!this.picture().likes.find((u => u.id === user.id));
+    return !!user && this.picture().likes.some(u => u.id === user.id);
   })
 
 
   handleLike() {
     if (!this.authService.isAuthenticated()) {
       this.snackbar.open("Erreur: vous devez être connecté pour aimer une image");
+      return;
     }
 
     this.like.emit(this.picture().id);

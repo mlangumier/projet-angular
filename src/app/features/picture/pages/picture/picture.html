@@ -9,13 +9,20 @@
       <h1 class="title">{{ picture.title }}</h1>
       <p class="description">{{ picture.description }}</p>
       <p class="likes">
-        <!-- Either switch "favorite" / "favorite_outline" or icon completely on click -->
-        <mat-icon fontIcon="favorite_outlined"></mat-icon>
-        @if (picture.likes.length > 0) {
-          {{ picture.likes }} personnes aiment cette image
-        } @else {
-          Soyez la première personne à aimer cette image!
-        }
+        <button matButton class="btn-like" (click)="toggleLikePicture()">
+          @if (isAlreadyLiked()) {
+            <mat-icon fontIcon="favorite" aria-label="ne plus aimer l'image"></mat-icon>
+          } @else {
+            <mat-icon fontIcon="favorite_outline" aria-label="aimer l'image"></mat-icon>
+          }
+          <span>
+            @if (picture.likes.length > 0) {
+              ({{ picture.likes.length }})
+            } @else {
+              Soyez la première personne à aimer cette image!
+            }
+          </span>
+        </button>
       </p>
 
       <p>Postée le {{ picture.createdAt | date: 'd MMMM y à H:mm' }} par

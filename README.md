@@ -15,7 +15,7 @@ Créer une application Angular et créer une interface graphique responsive pour
 - [x] Afficher les images d'un user spécifique
 - [ ] Poster une image
 - [ ] Poster un commentaire. 
-- [ ] Liker une image et afficher le nombre de like et le status (déjà likée ou non)
+- [x] Liker une image et afficher le nombre de like et le status (déjà likée ou non)
 
 ### Bonus
 
