@@ -1,5 +1,5 @@
 <section class="page-title">
-  <h1>{{ pictureId() ? "Modifier l'image" : "Nouvelle image" }}</h1>
+  <h1>Publier une image</h1>
 </section>
 
 <section class="editor">
@@ -25,22 +25,42 @@
 
       <div class="picture-field">
         <div class="field">
-          <label for="picture">Choisir une image</label>
-          <input type="file"
-              id="picture"
-              required
-              accept="image/*"
-              (change)="onPictureChange($event)"
-          >
+          <button matButton="outlined" type="button">
+            @if (picturePreview()) {
+              <label for="picture">
+                <mat-icon fontIcon="cached"></mat-icon>
+                <span>Choisir une autre image</span>
+              </label>
+            } @else {
+              <label for="picture">
+                <mat-icon fontIcon="upload"></mat-icon>
+                <span>Choisir une image à publier</span>
+              </label>
+            }
+            <!-- TODO: rework all that so input fits the button -->
+            <input type="file"
+                id="picture"
+                required
+                accept="image/*"
+                (change)="onPictureChange($event)"
+                hidden
+            >
+          </button>
         </div>
 
-        <div class="picture">
+        <div class="preview">
           @if (picturePreview()) {
-            <img [src]="picturePreview()" alt="" height="200" width="200"/>
+            <img [src]="picturePreview()" alt="#" />
           } @else {
-            <div style="height: 200px; width: 200px; background-color: lightgray; opacity: 0.2;"></div>
+            <div class="skeleton"></div>
           }
         </div>
+
+        <mat-error>
+          @if (picture && picture.getError('missing')) {
+            Veuillez sélectionner une image à publier
+          }
+        </mat-error>
       </div>
     </div>
 

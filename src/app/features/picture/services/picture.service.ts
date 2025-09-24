@@ -1,6 +1,6 @@
 import { HttpClient, httpResource } from "@angular/common/http";
 import { inject, Injectable, Signal } from '@angular/core';
-import { map, tap } from "rxjs";
+import { map } from "rxjs";
 import { IPaginatedPictures, IPicture } from "../models/picture.model";
 import { IUser } from "../models/user.model";
 
@@ -8,6 +8,12 @@ export interface ISearchParams {
   search?: string;
   pageNumber?: number;
   pageSize?: number;
+}
+
+export interface IFormPicture {
+  title: string;
+  description: string;
+  image: string | null;
 }
 
 @Injectable({
@@ -43,12 +49,21 @@ export class PictureService {
     return this.http.patch<IPicture>(`/picture/${ id }/like`, {}, { withCredentials: true }).pipe(map(response => this.adaptPictureResponse(response)));
   }
 
-  createPicture(payload: any) {
+  createPicture(payload: IFormPicture) {
     return this.http.post<IPicture>(`/picture`, payload, { withCredentials: true }).pipe(map(response => this.adaptPictureResponse(response)));
   }
 
+  updatePicture(pictureId: number, payload: IFormPicture) {
+    return this.http.put<IPicture>(`/picture/${ pictureId }`, payload, { withCredentials: true }).pipe(map(response => this.adaptPictureResponse(response)));
+  }
+
   uploadFile(file: File) {
-    return this.http.post(`/picture/upload`, file, { withCredentials: true });
+    const multipartFile = new FormData();
+    multipartFile.append('image', file);
+
+    return this.http.post<{ filename: string }>(`/picture/upload`, multipartFile, {
+      withCredentials: true,
+    });
   }
 
   private adaptPaginatedResults(res: any): IPaginatedPictures {
