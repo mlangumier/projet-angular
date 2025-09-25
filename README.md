@@ -13,7 +13,7 @@ Créer une application Angular et créer une interface graphique responsive pour
 - [x] Afficher les dernières images paginées
 - [x] Afficher une image spécifique et ses commentaires
 - [x] Afficher les images d'un user spécifique
-- [ ] Poster une image
+- [ ] ~~Poster une image~~ CRUD d'une image
 - [ ] Poster un commentaire. 
 - [x] Liker une image et afficher le nombre de like et le status (déjà likée ou non)
 
@@ -22,3 +22,11 @@ Créer une application Angular et créer une interface graphique responsive pour
 - [ ] Réactiver le CSRF dans le SecurityConfig et faire en sorte côté front de récupéré le token
   CSRF et de l'envoyer pour chaque méthode de modification
 
+### Problèmes à régler
+
+- UI:
+  - Cartes d'affichage des images, en particulier en display horizontal
+  - Dans l'affichage en grille, les image n'ont pas toutes la même hauteur
+- UX:
+  - Définir une norme en ce qui concerne les interactions et la durée entre les redirections (timeout, duration, snackbar vs erreurs)
+  - Submission de formulaire : désactiver les formulaires lors d'un submit & afficher un spinner le temps de la requête.

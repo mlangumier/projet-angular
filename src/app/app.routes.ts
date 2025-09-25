@@ -12,11 +12,11 @@ export const routes: Routes = [
     loadComponent: () => import('./features/picture/pages/picture/picture').then(m => m.Picture),
     title: `Image | Angular ORM`
   },
-  //TODO: Update following path to work with children:
-  // Profile: /user/:userId
-  // Gallery: /user/:userId/picture
-  // Editor - Create picture: /user/:userId/picture/editor
-  // Editor - Update picture : /user/:userId/picture/editor/:pictureId
+  {
+    path: 'picture/:pictureId/modify',
+    loadComponent: () => import('./features/picture/pages/add-picture/add-picture.component').then(m => m.AddPicture),
+    title: `Modifier image | Angular ORM`
+  },
   {
     path: 'user/:userId', children: [
       // default: profile (add on implementation)
@@ -26,13 +26,8 @@ export const routes: Routes = [
         title: `Gallery | Angular ORM`
       },
       {
-        path: 'picture/editor/:pictureId',
-        loadComponent: () => import('./features/picture/pages/editor/editor').then(m => m.Editor),
-        title: `Modifier image | Angular ORM`
-      },
-      {
-        path: 'picture/editor',
-        loadComponent: () => import('./features/picture/pages/editor/editor').then(m => m.Editor),
+        path: 'picture/add',
+        loadComponent: () => import('./features/picture/pages/add-picture/add-picture.component').then(m => m.AddPicture),
         title: `Nouvelle image | Angular ORM`
       }
     ]

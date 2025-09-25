@@ -1,19 +1,13 @@
 import { HttpClient, httpResource } from "@angular/common/http";
 import { inject, Injectable, Signal } from '@angular/core';
 import { map } from "rxjs";
-import { IPaginatedPictures, IPicture } from "../models/picture.model";
+import { IPaginatedPictures, IPicture, IPictureBase } from "../models/picture.model";
 import { IUser } from "../models/user.model";
 
 export interface ISearchParams {
   search?: string;
   pageNumber?: number;
   pageSize?: number;
-}
-
-export interface IFormPicture {
-  title: string;
-  description: string;
-  image: string | null;
 }
 
 @Injectable({
@@ -49,11 +43,11 @@ export class PictureService {
     return this.http.patch<IPicture>(`/picture/${ id }/like`, {}, { withCredentials: true }).pipe(map(response => this.adaptPictureResponse(response)));
   }
 
-  createPicture(payload: IFormPicture) {
+  createPicture(payload: IPictureBase) {
     return this.http.post<IPicture>(`/picture`, payload, { withCredentials: true }).pipe(map(response => this.adaptPictureResponse(response)));
   }
 
-  updatePicture(pictureId: number, payload: IFormPicture) {
+  updatePicture(pictureId: number, payload: IPictureBase) {
     return this.http.put<IPicture>(`/picture/${ pictureId }`, payload, { withCredentials: true }).pipe(map(response => this.adaptPictureResponse(response)));
   }
 

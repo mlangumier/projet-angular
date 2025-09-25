@@ -1,0 +1,61 @@
+.form {
+  .content {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    .text-fields {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .picture-field {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 0.5rem;
+      margin: auto;
+      text-align: center;
+
+      .field {
+        width: fit-content;
+        margin: auto;
+
+        label {
+          display:flex;
+          align-items: center;
+          gap: 0.5rem;
+        }
+      }
+
+      .preview {
+        position: relative;
+        border: 1px solid var(--mat-sys-outline-variant);
+        border-radius: 0.5rem;
+        min-width: 280px;
+        min-height: 280px;
+        overflow: hidden;
+
+        .skeleton {
+          background-color: var(--mat-sys-surface-container);
+          position: absolute;
+          top: 0;
+          left: 0;
+          height: 100%;
+          width: 100%;
+        }
+
+        img {
+          object-fit: fill;
+          width: 100%;
+        }
+      }
+    }
+  }
+
+  .actions {
+    margin-top: 1rem;
+    text-align: end;
+  }
+}
