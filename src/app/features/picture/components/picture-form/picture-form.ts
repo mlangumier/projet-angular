@@ -26,7 +26,6 @@ export class PictureForm {
   private readonly snackbar = inject(SnackbarUtilService);
   protected readonly picturePreview = signal<string | null>(null);
   readonly submitForm = output<IPictureForm>();
-  //TODO: Get current picture value by input from parent (pictureData<IPicture | null>) & set form default values if pictureData exists
 
   protected readonly form = this.formBuilder.group({
     title: [ <string>'', [ Validators.required, Validators.minLength(2) ] ],

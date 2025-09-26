@@ -36,6 +36,19 @@
     </div>
   </section>
 
+  @if (isOwner()) {
+    <section class="ctas">
+      <a matButton="filled" [routerLink]="['']" disabled>
+        <mat-icon fontIcon="edit"></mat-icon>
+        <span>Modifier l'image</span>
+      </a>
+      <button matButton="filled" class="btn-danger" (click)="onDeletePictureClick()">
+        <mat-icon fontIcon="delete"></mat-icon>
+        <span>Supprimer</span>
+      </button>
+    </section>
+  }
+
   <section class="comments-block">
     <h2>Commentaires ({{ commentsResponse.value()?.length || 0 }})</h2>
 

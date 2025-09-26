@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { ReactiveFormsModule } from "@angular/forms";
 import { Router } from "@angular/router";
-import { finalize, switchMap } from "rxjs";
+import { switchMap } from "rxjs";
 import { SnackbarUtilService } from "../../../../shared/utils/snackbar-util.service";
 import { PictureForm } from "../../components/picture-form/picture-form";
 import { IPicture, IPictureBase, IPictureForm } from "../../models/picture.model";

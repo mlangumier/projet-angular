@@ -1,0 +1,16 @@
+<h2 mat-dialog-title>{{ data.title }}</h2>
+
+<mat-dialog-content>
+  @for (text of data.content; track $index) {
+    <p>{{ text }}</p>
+  }
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button matButton
+      [mat-dialog-close]="true"
+      (click)="data.action.handleAction()"
+  >{{ data.action.text }}
+  </button>
+  <button matButton mat-dialog-close>Annuler</button>
+</mat-dialog-actions>

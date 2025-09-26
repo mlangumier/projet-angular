@@ -36,7 +36,14 @@
       flex: 1;
     }
   }
+}
 
+.ctas {
+  margin: 1rem 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
+  gap: 1rem;
 }
 
 .comments-block {

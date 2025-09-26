@@ -47,6 +47,7 @@ export class PictureService {
     return this.http.post<IPicture>(`/picture`, payload, { withCredentials: true }).pipe(map(response => this.adaptPictureResponse(response)));
   }
 
+  //TODO
   updatePicture(pictureId: number, payload: IPictureBase) {
     return this.http.put<IPicture>(`/picture/${ pictureId }`, payload, { withCredentials: true }).pipe(map(response => this.adaptPictureResponse(response)));
   }
@@ -58,6 +59,10 @@ export class PictureService {
     return this.http.post<{ filename: string }>(`/picture/upload`, multipartFile, {
       withCredentials: true,
     });
+  }
+
+  deletePicture(pictureId: number) {
+    return this.http.delete<void>(`/picture/${ pictureId }`, { withCredentials: true });
   }
 
   private adaptPaginatedResults(res: any): IPaginatedPictures {

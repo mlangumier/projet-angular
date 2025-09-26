@@ -27,6 +27,7 @@ Créer une application Angular et créer une interface graphique responsive pour
 - UI:
   - Cartes d'affichage des images, en particulier en display horizontal
   - Dans l'affichage en grille, les image n'ont pas toutes la même hauteur
+  - Ajouter des couleurs aux boutons : distinguer confirmation, danger, etc.
 - UX:
   - Définir une norme en ce qui concerne les interactions et la durée entre les redirections (timeout, duration, snackbar vs erreurs)
   - Submission de formulaire : désactiver les formulaires lors d'un submit & afficher un spinner le temps de la requête.

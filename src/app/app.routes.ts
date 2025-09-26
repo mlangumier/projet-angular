@@ -13,11 +13,6 @@ export const routes: Routes = [
     title: `Image | Angular ORM`
   },
   {
-    path: 'picture/:pictureId/modify',
-    loadComponent: () => import('./features/picture/pages/add-picture/add-picture.component').then(m => m.AddPicture),
-    title: `Modifier image | Angular ORM`
-  },
-  {
     path: 'user/:userId', children: [
       // default: profile (add on implementation)
       {
