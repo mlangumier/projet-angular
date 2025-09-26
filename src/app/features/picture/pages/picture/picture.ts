@@ -50,7 +50,7 @@ export class Picture {
   })
 
   onDeletePictureClick() {
-    const dialogRef = this.dialog.open(DialogComponent, {
+    this.dialog.open(DialogComponent, {
       enterAnimationDuration: '150ms',
       data: {
         title: "Confirmez la suppression de l'image",

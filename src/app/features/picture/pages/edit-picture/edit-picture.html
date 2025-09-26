@@ -1,0 +1,10 @@
+<section class="page-title">
+  <h1>Publier une image</h1>
+</section>
+
+<section class="editor">
+  <app-picture-form
+      (submitForm)="onEditPicture($event)"
+      [defaultValues]="pictureResponse.hasValue() ? pictureResponse.value() : null"
+  ></app-picture-form>
+</section>

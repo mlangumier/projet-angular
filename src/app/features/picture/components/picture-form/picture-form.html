@@ -52,7 +52,7 @@
       </div>
 
       <mat-error>
-        @if (picture && picture.getError('missing')) {
+        @if (imageFile && imageFile.getError('missing')) {
           Veuillez sélectionner une image à publier
         }
       </mat-error>
@@ -60,6 +60,6 @@
   </div>
 
   <div class="actions">
-    <button matButton="filled" type="submit">Créer l'image</button>
+    <button matButton="filled" type="submit">{{ defaultValues() ? "Modifier l'image" : "Créer l'image" }}</button>
   </div>
 </form>

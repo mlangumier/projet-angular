@@ -38,7 +38,7 @@
 
   @if (isOwner()) {
     <section class="ctas">
-      <a matButton="filled" [routerLink]="['']" disabled>
+      <a matButton="filled" [routerLink]="['/user', picture.author.id, 'picture', picture.id]">
         <mat-icon fontIcon="edit"></mat-icon>
         <span>Modifier l'image</span>
       </a>

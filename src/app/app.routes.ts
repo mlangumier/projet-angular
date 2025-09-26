@@ -24,6 +24,11 @@ export const routes: Routes = [
         path: 'picture/add',
         loadComponent: () => import('./features/picture/pages/add-picture/add-picture.component').then(m => m.AddPicture),
         title: `Nouvelle image | Angular ORM`
+      },
+      {
+        path: 'picture/:pictureId',
+        loadComponent: () => import('./features/picture/pages/edit-picture/edit-picture').then(m => m.EditPicture),
+        title: `Modifier l'image | Angular ORM`
       }
     ]
   },

@@ -47,8 +47,7 @@ export class PictureService {
     return this.http.post<IPicture>(`/picture`, payload, { withCredentials: true }).pipe(map(response => this.adaptPictureResponse(response)));
   }
 
-  //TODO
-  updatePicture(pictureId: number, payload: IPictureBase) {
+  updatePicture(pictureId: number, payload: IPicture) {
     return this.http.put<IPicture>(`/picture/${ pictureId }`, payload, { withCredentials: true }).pipe(map(response => this.adaptPictureResponse(response)));
   }
 

@@ -1,11 +1,11 @@
-import { Component, inject, output, signal } from '@angular/core';
+import { Component, effect, inject, input, output, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
 import { MatButton } from "@angular/material/button";
 import { MatError, MatFormField } from "@angular/material/form-field";
 import { MatIcon } from "@angular/material/icon";
 import { MatInput, MatLabel } from "@angular/material/input";
 import { SnackbarUtilService } from "../../../../shared/utils/snackbar-util.service";
-import { IPictureForm } from "../../models/picture.model";
+import { IPicture, IPictureForm } from "../../models/picture.model";
 
 @Component({
   selector: 'app-picture-form',
@@ -25,13 +25,27 @@ export class PictureForm {
   private readonly formBuilder = inject(FormBuilder);
   private readonly snackbar = inject(SnackbarUtilService);
   protected readonly picturePreview = signal<string | null>(null);
-  readonly submitForm = output<IPictureForm>();
+  protected readonly submitForm = output<IPictureForm>();
+  readonly defaultValues = input<IPicture | null>(null);
 
   protected readonly form = this.formBuilder.group({
     title: [ <string>'', [ Validators.required, Validators.minLength(2) ] ],
     description: [ <string>'', [ Validators.required ] ],
     imageFile: [ <File | null>null, [ Validators.required ] ]
   }, { updateOn: 'submit' });
+
+  constructor() {
+    effect(() => {
+      if (this.defaultValues() === null) return;
+
+      this.form.setValue({
+        title: this.defaultValues()!.title,
+        description: this.defaultValues()!.description,
+        imageFile: null
+      })
+      this.picturePreview.set(this.defaultValues()!.imageLink)
+    });
+  }
 
   protected get title() {
     return this.form.get('title');
@@ -41,7 +55,7 @@ export class PictureForm {
     return this.form.get('description');
   }
 
-  protected get picture() {
+  protected get imageFile() {
     return this.form.get('imageFile');
   }
 
@@ -49,11 +63,11 @@ export class PictureForm {
     const file = (event.target as HTMLInputElement).files?.item(0);
 
     if (!file) {
-      this.picture?.setValue(null);
+      this.imageFile?.setValue(null);
       return;
     }
 
-    this.picture?.setValue(file);
+    this.imageFile?.setValue(file);
 
     // Picture preview before upload
     const reader = new FileReader();
@@ -64,8 +78,8 @@ export class PictureForm {
   }
 
   onSubmitForm() {
-    if (this.picture?.value === null) {
-      this.picture?.setErrors({ missing: true });
+    if (this.imageFile?.value === null) {
+      this.imageFile?.setErrors({ missing: true });
     }
 
     if (!this.form.valid) {
@@ -76,7 +90,7 @@ export class PictureForm {
     const pictureData: IPictureForm = {
       title: this.form.value.title!,
       description: this.form.value.description!,
-      image: this.form.value.imageFile!
+      image: this.form.value.imageFile!,
     }
 
     this.submitForm.emit(pictureData);
