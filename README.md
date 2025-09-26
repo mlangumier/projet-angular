@@ -13,7 +13,7 @@ Créer une application Angular et créer une interface graphique responsive pour
 - [x] Afficher les dernières images paginées
 - [x] Afficher une image spécifique et ses commentaires
 - [x] Afficher les images d'un user spécifique
-- [ ] ~~Poster une image~~ CRUD d'une image
+- [x] ~~Poster une image~~ CRUD d'une image
 - [ ] Poster un commentaire.
 - [x] Liker une image et afficher le nombre de like et le status (déjà likée ou non)
 
@@ -27,6 +27,7 @@ Créer une application Angular et créer une interface graphique responsive pour
 - Développement :
     - Regrouper le code réutilisé à plusieurs endroits (style, pages ajout/modification d'image,
       composants réutilisables).
+    - Modifier les URL des pages pour avoir une meilleure logique d'organisation
 - UI :
     - Cartes d'affichage des images, en particulier en display horizontal
     - Dans l'affichage en grille, les image n'ont pas toutes la même hauteur
@@ -36,3 +37,4 @@ Créer une application Angular et créer une interface graphique responsive pour
       timeout, duration, snackbar vs erreurs)
     - Submission de formulaire : désactiver les formulaires lors d'un submit & afficher un spinner
       le temps de la requête.
+    - Ajouter un fil d'ariane pour aider à la navigation
