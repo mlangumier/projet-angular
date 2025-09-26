@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { authGuard } from "./core/auth/guards/auth-guard";
 import { Login } from "./core/auth/pages/login/login";
 import { Register } from "./core/auth/pages/register/register";
 import { Home } from "./features/picture/pages/home/home";
@@ -23,12 +24,14 @@ export const routes: Routes = [
       {
         path: 'picture/add',
         loadComponent: () => import('./features/picture/pages/add-picture/add-picture.component').then(m => m.AddPicture),
-        title: `Nouvelle image | Angular ORM`
+        title: `Nouvelle image | Angular ORM`,
+        canActivate: [authGuard]
       },
       {
         path: 'picture/:pictureId',
         loadComponent: () => import('./features/picture/pages/edit-picture/edit-picture').then(m => m.EditPicture),
-        title: `Modifier l'image | Angular ORM`
+        title: `Modifier l'image | Angular ORM`,
+        canActivate: [authGuard]
       }
     ]
   },
