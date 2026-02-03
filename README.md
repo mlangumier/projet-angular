@@ -25,16 +25,13 @@ Créer une application Angular et créer une interface graphique responsive pour
 ### Problèmes à régler
 
 - Développement :
-    - Regrouper le code réutilisé à plusieurs endroits (style, pages ajout/modification d'image,
-      composants réutilisables).
-    - Modifier les URL des pages pour avoir une meilleure logique d'organisation
+  - Regrouper le code réutilisé à plusieurs endroits (style, pages ajout/modification d'image, composants réutilisables).
+  - Modifier les URL des pages pour avoir une meilleure logique d'organisation
 - UI :
-    - Cartes d'affichage des images, en particulier en display horizontal
-    - Dans l'affichage en grille, les image n'ont pas toutes la même hauteur
-    - Ajouter des couleurs aux boutons (SCSS) : distinguer confirmation, danger, etc.
+  - Cartes d'affichage des images, en particulier en display horizontal
+  - Dans l'affichage en grille, les image n'ont pas toutes la même hauteur
+  - Ajouter des couleurs aux boutons (SCSS) : distinguer confirmation, danger, etc.
 - UX :
-    - Définir une norme en ce qui concerne les interactions et la durée entre les redirections (
-      timeout, duration, snackbar vs erreurs)
-    - Submission de formulaire : désactiver les formulaires lors d'un submit & afficher un spinner
-      le temps de la requête.
-    - Ajouter un fil d'ariane pour aider à la navigation
+  - Définir une norme en ce qui concerne les interactions et la durée entre les redirections (timeout, duration, snackbar vs erreurs)
+  - Submission de formulaire : désactiver les formulaires lors d'un submit & afficher un spinner le temps de la requête.
+  - Ajouter un fil d'ariane pour aider à la navigation
