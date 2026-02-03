@@ -24,7 +24,7 @@ export class AuthService {
   }
 
   checkIsEmailAvailable(email: string): Observable<boolean> {
-    return this.http.get<boolean>(`/user/available/${ email }`);
+    return this.http.get<boolean>(`/user/available/${email}`);
   }
 
   register(payload: IRegister): Observable<IUserAuth> {
@@ -32,11 +32,11 @@ export class AuthService {
   }
 
   login(credentials: ICredentials): Observable<IUserAuth> {
-    const btoaCredentials = `${ credentials.email }:${ credentials.password }`
+    const btoaCredentials = `${credentials.email}:${credentials.password}`
 
     return this.http.get<IUserAuth>(`/account`, {
       headers: {
-        "Authorization": `Basic ${ btoa(btoaCredentials) }`,
+        "Authorization": `Basic ${btoa(btoaCredentials)}`,
       },
       withCredentials: true
     }).pipe(tap((response: IUserAuth) => this.setUserAuth(response)))
